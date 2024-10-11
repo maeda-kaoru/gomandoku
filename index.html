@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>gomangoku</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+  <link rel="stylesheet" href="css/style.min.css">
+    <!-- SwiperのCSSをnode_modulesから読み込む -->
+    <link rel="stylesheet" href="node_modules/swiper/swiper-bundle.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <body>
+    <div class="mask" id="mask"></div>
+    <header class="site-header">
+      <div class="container">
+        <div class="header-top">
+          <p>雑貨15,00円以上で送料無料</p>
+        </div>
+        <div class="header-bottom">
+          <!-- ハンバーガーメニュー -->
+          <div class="hamburger">
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="24" height="24" color="#000000"><defs><style>.cls-6374f8d9b67f094e4896c63e-1{fill:none;stroke:currentColor;stroke-miterlimit:10;}</style></defs><line class="cls-6374f8d9b67f094e4896c63e-1" x1="0.5" y1="2.42" x2="23.5" y2="2.42"></line><line class="cls-6374f8d9b67f094e4896c63e-1" x1="0.5" y1="12" x2="23.5" y2="12"></line><line class="cls-6374f8d9b67f094e4896c63e-1" x1="0.5" y1="21.58" x2="23.5" y2="21.58"></line></svg>
+          </div>
+          <div class="header-logo">
+            <a href="index.html">
+              <img src="images/gomangoku_logo-go-2.png" alt="logo" class="logo" width="150px" height="69px">
+            </a>
+          </div>
+          <!-- ナビゲーションメニュー -->
+          <nav class="site-nav" id="nav">
+            <div class="close-button" id="closeButton">
+            </div>
+            <ul class="nav-list">
+              <li class="nav-item" id="item"><a href="#home" class="nav-link">HOME</a></li>
+              <li class="nav-item" id="item"><a href="#about us" class="nav-link">ABOUT US</a></li>
+              <li class="nav-item" id="item">
+                <a href="#online store" class="nav-link">ONLINE STORE</a>
+                <!-- サブメニュー -->
+                <div class="dropdown">
+                  <div class="footer-contair1">
+                    <div class="footer-title">
+                      <p>FURNITURE</p>
+                    </div>
+                    <ul class="footer-nav">
+                      <li class="footer-nav-item"><a href="#">SOFA</a></li>
+                      <li class="footer-nav-item"><a href="#">CHAIR</a></li>
+                      <li class="footer-nav-item"><a href="#">DINING TABLE</a></li>
+                      <li class="footer-nav-item"><a href="#">LIVING / SIDE TABLE</a></li>
+                      <li class="footer-nav-item"><a href="#">TV BOARD</a></li>
+                      <li class="footer-nav-item"><a href="#">STORAGE</a></li>
+                      <li class="footer-nav-item"><a href="#">OTHER</a></li>
+                    </ul>
+                  </div>
+                  <div class="footer-contair2">
+                    <div class="footer-title">
+                      <p>INTERIOR</p>
+                    </div>
+                    <ul class="footer-nav">
+                      <li class="footer-nav-item"><a href="#">LIGHTING</a></li>
+                      <li class="footer-nav-item"><a href="#">FABRIC</a></li>
+                      <li class="footer-nav-item"><a href="#">ROOM SPEAKER</a></li>
+                      <li class="footer-nav-item"><a href="#">INTERIOR</a></li>
+                      <li class="footer-nav-item"><a href="#">TABLEWARE</a></li>
+                      <li class="footer-nav-item"><a href="#">ART</a></li>
+                    </ul>
+                  </div>
+                  <div class="footer-contair3">
+                    <div class="footer-title">
+                      <p>POP UP COLLECTION</p>
+                    </div>
+                    <ul class="footer-nav">
+                      <li class="footer-nav-item"><a href="#">KIHON NO UTUWA</a></li>
+                    </ul>
+                  </div>
+              </li>
+              <li class="nav-item" id="item"><a href="#news" class="nav-link">NEWS</a></li>
+              <li class="nav-item" id="item"><a href="#media" class="nav-link">MEDIA</a></li>
+              <li class="nav-item" id="item"><a href="#journal" class="nav-link">JOURNAL</a></li>
+              <li class="nav-item" id="item"><a href="#contact" class="nav-link">CONTACT</a></li>
+            </ul>
+          </nav>
+          <div class="icon">
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="24" height="24" color="#000000">
+              <defs>
+                <style>
+                  .cls-6374f8d9b67f094e4896c670-1 {
+                    fill: none;
+                    stroke: currentColor;
+                    stroke-miterlimit: 10;
+                  }
+                </style>
+              </defs>
+              <circle class="cls-6374f8d9b67f094e4896c670-1" cx="12" cy="7.25" r="5.73"></circle>
+              <path class="cls-6374f8d9b67f094e4896c670-1" d="M1.5,23.48l.37-2.05A10.3,10.3,0,0,1,12,13h0a10.3,10.3,0,0,1,10.13,8.45l.37,2.05"></path>
+            </svg>
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="24" height="24" color="#000000">
+              <defs>
+                <style>
+                  .cls-6374f8d9b67f094e4896c660-1 {
+                    fill: none;
+                    stroke: currentColor;
+                    stroke-miterlimit: 10;
+                  }
+                </style>
+              </defs>
+              <circle class="cls-6374f8d9b67f094e4896c660-1" cx="9.14" cy="9.14" r="7.64"></circle>
+              <line class="cls-6374f8d9b67f094e4896c660-1" x1="22.5" y1="22.5" x2="14.39" y2="14.39"></line>
+            </svg>
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="24" height="24" color="#000000">
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: none;
+                    stroke: currentColor;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                  }
+                </style>
+              </defs>
+              <path class="cls-1" d="M4.75 8.25A.75.75 0 0 0 4 9L3 19.125c0 1.418 1.207 2.625 2.625 2.625h12.75c1.418 0 2.625-1.149 2.625-2.566L20 9a.75.75 0 0 0-.75-.75H4.75Z"></path>
+              <path class="cls-1" d="M7.5 8.25v-1.5a4.5 4.5 0 0 1 4.5-4.5v0a4.5 4.5 0 0 1 4.5 4.5v1.5"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </header>
+  
+    <!-- メインコンテンツ部分 -->
+    <main>
+      <section class="main-section" id="pick-up">
+        <div class="container">
+          <div class="wrapper">
+            <div class="swiper circlePaginationSlider">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="images/main-slide1.jpg" alt="img01" class="slide-img" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="images/main-slide2.jpg" alt="img02" class="slide-img" />
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+          <div class="scroll"></div>
+        </div>
+      </section>
+      
+  
+      <section class="collection-section" id="collection">
+        <div class="container">
+          <div class="section-title">
+            <p>COLLECTION</p>
+            <h2>NEW ARRIVAL</h2>
+          </div>
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <!-- デフォルトの画像セット（初期表示のみ） -->
+                <div class="image-container default-set" data-set="default">
+                  <img src="images/collection1-1.png" alt="collection1-1" class="collection-img">
+                  <img src="images/collection1-2.jpg" alt="collection1-2" class="hover-img">
+                  <div class="square-container">
+                    <span class="dli-plus"></span>
+                  </div>
+                </div>
+                <div class="image-container" data-set="1"> <!-- 1番目のセット -->
+                  <img src="images/collection1-WH.png" alt="collection1-WH" class="collection-img">
+                  <img src="images/collection1-WH-2.jpg" alt="collection1-WH-2" class="hover-img">
+                  <div class="square-container">
+                    <span class="dli-plus"></span>
+                  </div>
+                </div>
+                <div class="image-container" data-set="2"> <!-- 2番目のセット -->
+                  <img src="images/collection1-BW.png" alt="collection1-BW" class="collection-img">
+                  <img src="images/collection1-WH.png" alt="collection1-WH" class="hover-img">
+                  <div class="square-container">
+                    <span class="dli-plus"></span>
+                  </div>
+                </div>
+                <div class="text-container">
+                  <div class="text-area">
+                    <p>Mononen | PENDANT LIGHT</p>
+                    <p class="price-color">¥22,770~</p>
+                  </div>
+                  <div class="color-area">
+                    <div class="color-box" data-set="1">
+                      <div class="outer-box"><div class="pick-white"></div></div>
+                    </div>
+                    <div class="color-box" data-set="2">
+                      <div class="outer-box"><div class="pick-brown"></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <!-- デフォルトの画像セット（初期表示のみ） -->
+                <div class="image-container default-set" data-set="default">
+                  <img src="images/collection2-1.png" alt="collection2-1" class="collection-img">
+                  <img src="images/collection2-2.jpg" alt="collection2-2" class="hover-img">
+                  <div class="square-container">
+                    <span class="dli-plus"></span>
+                  </div>
+                </div>
+                <div class="image-container" data-set="1"> <!-- 1番目のセット -->
+                  <img src="images/collection2-WH.png" alt="collection2-WH" class="collection-img">
+                  <img src="images/collection2-BW.png" alt="collection2-BW" class="hover-img">
+                  <div class="square-container">
+                    <span class="dli-plus"></span>
+                  </div>
+                </div>
+                <div class="image-container" data-set="2"> <!-- 2番目のセット -->
+                  <img src="images/collection2-BW.png" alt="collection2-BW" class="collection-img">
+                  <img src="images/collection2-2.jpg" alt="collection2-2" class="hover-img">
+                  <div class="square-container">
+                    <span class="dli-plus"></span>
+                  </div>
+                </div>
+                <div class="text-container">
+                  <div class="text-area">
+                    <p>Mondo | PENDANT LIGHT</p>
+                    <p class="price-color">¥13,820~</p>
+                  </div>
+                  <div class="color-area">
+                    <div class="color-box" data-set="1">
+                      <div class="outer-box"><div class="pick-white"></div></div>
+                    </div>
+                    <div class="color-box" data-set="2">
+                      <div class="outer-box"><div class="pick-brown"></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <!-- デフォルトの画像セット（初期表示のみ） -->
+                <div class="image-container default-set" data-set="default">
+                  <img src="images/collection3-1.png" alt="collection3-1" class="collection-img">
+                  <img src="images/collection3-2.jpg" alt="collection3-2" class="hover-img">
+                  <div class="square-container">
+                    <span class="dli-plus"></span>
+                  </div>
+                </div>
+                <div class="image-container" data-set="1"> <!-- 1番目のセット -->
+                  <img src="images/collection3-CL.png" alt="collection3-CL" class="collection-img">
+                  <img src="images/collection3-BN.png" alt="collection3-BN" class="hover-img">
+                  <div class="square-container">
+                    <span class="dli-plus"></span>
+                  </div>
+                </div>
+                <div class="image-container" data-set="2"> <!-- 2番目のセット -->
+                  <img src="images/collection3-BN.png" alt="collection3-BN" class="collection-img">
+                  <img src="images/collection3-CL.png" alt="collection3-CL" class="hover-img">
+                  <div class="square-container">
+                    <span class="dli-plus"></span>
+                  </div>
+                </div>
+                <div class="text-container">
+                  <div class="text-area">
+                    <p>Pinno | PENDANT LIGHT</p>
+                    <p class="price-color">¥13,750~</p>
+                  </div>
+                  <div class="color-area">
+                    <div class="color-box" data-set="1">
+                      <div class="outer-box"><div class="pick-white"></div></div>
+                    </div>
+                    <div class="color-box" data-set="2">
+                      <div class="outer-box"><div class="pick-brown"></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <!-- デフォルトの画像セット（初期表示のみ） -->
+                <div class="image-container default-set" data-set="default">
+                  <img src="images/collection4-1.png" alt="collection4-1" class="collection-img">
+                  <img src="images/collection4-2.jpg" alt="collection4-2" class="hover-img">
+                  <div class="square-container">
+                    <span class="dli-plus"></span>
+                  </div>
+                </div>
+                <div class="text-container">
+                  <div class="text-area">
+                    <p>BOOK MARK | REED DIFFUSER</p>
+                    <p class="price-color">¥3,400~</p>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <!-- デフォルトの画像セット（初期表示のみ） -->
+                <div class="image-container default-set" data-set="default">
+                  <img src="images/collection5-1.png" alt="collection5-1" class="collection-img">
+                  <img src="images/collection5-2.jpg" alt="collection5-2" class="hover-img">
+                  <div class="square-container">
+                    <span class="dli-plus"></span>
+                  </div>
+                </div>
+                <div class="text-container">
+                  <div class="text-area">
+                    <p>BOULEAU mug&plate</p>
+                    <p class="price-color">¥770~</p>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <!-- デフォルトの画像セット（初期表示のみ） -->
+                <div class="image-container default-set" data-set="default">
+                  <img src="images/collection6-1.png" alt="collection6-1" class="collection-img">
+                  <img src="images/collection6-2.jpg" alt="collection6-2" class="hover-img">
+                  <div class="square-container">
+                    <span class="dli-plus"></span>
+                  </div>
+                </div>
+                <div class="text-container">
+                  <div class="text-area">
+                    <p>EARLY BIRD mug&plate</p>
+                    <p class="price-color">¥1,760~</p>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <!-- デフォルトの画像セット（初期表示のみ） -->
+                <div class="image-container default-set" data-set="default">
+                  <img src="images/collection7-1.jpg" alt="collection7-1" class="collection-img">
+                  <img src="images/collection7-2.png" alt="collection7-2" class="hover-img">
+                  <div class="square-container">
+                    <span class="dli-plus"></span>
+                  </div>
+                </div>
+                <div class="image-container" data-set="1"> <!-- 1番目のセット -->
+                  <img src="images/collection7-LG.jpg" alt="collection7-LG" class="collection-img">
+                  <img src="images/collection7-LG-2.png" alt="collection7-LG-2" class="hover-img">
+                  <div class="square-container">
+                    <span class="dli-plus"></span>
+                  </div>
+                </div>
+                <div class="image-container" data-set="2"> <!-- 2番目のセット -->
+                  <img src="images/collection7-OB.png" alt="collection7-OB" class="collection-img">
+                  <img src="images/collection7-OB-2.png" alt="collection7-OB-2" class="hover-img">
+                  <div class="square-container">
+                    <span class="dli-plus"></span>
+                  </div>
+                </div>
+                <div class="image-container" data-set="3"> <!-- 3番目のセット -->
+                  <img src="images/collection7-AB.png" alt="collection7-AB" class="collection-img">
+                  <img src="images/collection7-AB-2.png" alt="collection7-AB-2" class="hover-img">
+                  <div class="square-container">
+                    <span class="dli-plus"></span>
+                  </div>
+                </div>
+                <div class="text-container">
+                  <div class="text-area">
+                    <p>Mondo | PENDANT LIGHT</p>
+                    <p class="price-color">¥13,820~</p>
+                  </div>
+                  <div class="color-area">
+                    <div class="color-box" data-set="1">
+                      <div class="outer-box"><div class="pick-white"></div></div>
+                    </div>
+                    <div class="color-box" data-set="2">
+                      <div class="outer-box"><div class="pick-brown"></div></div>
+                    </div>
+                    <div class="color-box" data-set="3">
+                      <div class="outer-box"><div class="pick-black"></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <!-- デフォルトの画像セット（初期表示のみ） -->
+                <div class="image-container default-set" data-set="default">
+                  <img src="images/collection8-1.png" alt="collection8-1" class="collection-img">
+                  <img src="images/collection8-2.jpg" alt="collection8-2" class="hover-img">
+                  <div class="square-container">
+                    <span class="dli-plus"></span>
+                  </div>
+                </div>
+                <div class="text-container">
+                  <div class="text-area">
+                    <p>FROM STAND MIRROR</p>
+                    <p class="price-color">¥33,000~</p>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
+            <div class="text-center">
+              <button class="button"><a href="#collection" class="button-text">VIEW ALL</a></button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+  
+      <section class="online-section" id="online">
+        <div class="container">
+          <div class="section-title">
+            <p>GOMANGOKU SELLECTED</p>
+            <h2>ONLINE STORE</h2>
+          </div>
+          <div class="online-list">
+            <div class="online-item">
+              <!-- 画像を配置 -->
+              <img src="images/PB081976.jpg" alt="" class="image">
+              <!-- テキストを中央に配置 -->
+              <div class="online-text">
+                <p>COLLECTION</p>
+                <h3>FURNITURE</h3>
+                <div class="text-center">
+                  <button class="button"><a href="#online" class="button-text">VIEW ALL</a></button>
+                </div>
+              </div>
+            </div>
+            <div class="online-item">
+              <!-- 画像を先に配置 -->
+              <img src="images/P1011093r.jpg" alt="インテリア画像" class="responsive-image">
+              
+              <!-- テキストを画像の中央に配置する -->
+              <div class="online-text">
+                <p>COLLECTION</p>
+                <h3>INTERIOR & GOODS</h3>
+                <div class="text-center">
+                  <button class="button"><a href="#online" class="button-text">VIEW ALL</a></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="news-section" id="news">
+        <div class="container">
+          <div class="section-title">
+            <p>SHOP</p>
+            <h2>NEWS</h2>
+          </div>
+          <div class="news-list">
+            <div class="news-item">
+              <img src="images/francebed_0921_0922.png" alt="news-img-1" class="news-img">
+              <a href="#news" class="news-category">NEWS</a>
+              <p class="news-title">FranceBed FAIR in OKAZAKI</p>
+              <p class="news-day">2024年9月21日(土)・22日(日)</p>
+            </div>
+            <div class="news-item">
+              <img src="images/gomanngoku__banner202408_3_8d6731ba-8b0b-47e7-93cc-d45275769ec0.jpg" alt="news-img-2" class="news-img">
+              <a href="#news" class="news-category">NEWS</a>
+              <p class="news-title">GOMANGOKU 10th ANNIVERSARY</p>
+              <p class="news-day">2024年9月7日(土)～9月29日(日)</p>
+            </div>
+            <div class="news-item">
+              <img src="images/2408_haisomuryo_color_1920x1080_a5a29981-68c9-4114-b7bc-31c8d0574a98.jpg" alt="news-img-3" class="news-img">
+              <a href="#news" class="news-category">NEWS</a>
+              <p class="news-title">オンラインストア配送無料キャンペーン</p>
+              <p class="news-day">2024年9月7日(土)～9月29日(日) </p>
+            </div>
+          </div>
+          <div class="text-center">
+            <button class="button"><a href="#journal" class="button-text">VIEW ALL</a></button>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="journal-section" id="journal">
+        <div class="container">
+          <div class="section-title">
+            <p>STYLING BY GOMANGOKU</p>
+            <h2>JOURNAL</h2>
+          </div>
+          <div class="journal-img-containar">
+            <div class="journal-img-area">
+              <div class="journal-text">
+                <P class="journal-category">NEW COLUMN</P>
+                <p class="journal-title">MAIKING A NEST.</p>
+                <p class="journal-content">インテリアでつくる、人間の「巣」</p>
+                <button class="button"><a href="#journal" class="button-text">READ MORE</a></button>
+              </div>
+              <div class="journal-img">
+                <img src="images/2023-03-28_11_48_26_897c953d-c113-444f-950b-d5ec610680b3.jpg" alt="styling1" class="journal-img1">
+                <img src="images/2023-03-28_11_16_07.jpg" alt="styling2" class="journal-img2">
+              </div>
+            </div>
+          </div>
+          <div class="video-area">
+            <video controls class="video" id="myVideo">
+              <source src="images/7f0f711ef4c549b5af97cd41e5d482a2.HD-1080p-7.2Mbps-14043577.mp4" type="video/mp4">
+              お使いのブラウザは動画を再生できません。
+            </video>
+            <div class="video-text">
+              <div class="film-by">Film by</div>
+              <div class="film-title">GOMANGOKU</div>
+              <div class="tagline">We want to bring dreams and smiles to your life</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="instagram-section" id="instagram">
+        <div class="container">
+          <div class="section-title">
+            <p>Follow Us</p>
+            <h2>Instagram</h2>
+          </div>
+          <div class="instagram-gallery">
+            <!-- 各画像を独立した instagram-post として分ける -->
+            <div class="instagram-post">
+              <div class="instagram-img">
+                <img src="images/461126623_3988352018062385_2986853077362019719_n.jpg" alt="Image 1">
+                <div class="overlay">
+                  <a href="https://instagram.com/yourprofile" target="_blank">
+                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="24" height="24" color="#ffffff">
+                      <defs>
+                        <style>
+                          .cls-637b8512f95e86b59c57a11c-1 {
+                            fill: none;
+                            stroke: currentColor;
+                            stroke-miterlimit: 10;
+                          }
+                          .cls-637b8512f95e86b59c57a11c-2 {
+                            fill: currentColor;
+                          }
+                        </style>
+                      </defs>
+                      <rect class="cls-637b8512f95e86b59c57a11c-1" x="1.5" y="1.5" width="21" height="21" rx="3.82"></rect>
+                      <circle class="cls-637b8512f95e86b59c57a11c-1" cx="12" cy="12" r="4.77"></circle>
+                      <circle class="cls-637b8512f95e86b59c57a11c-2" cx="18.2" cy="5.8" r="1.43"></circle>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="instagram-post">
+              <div class="instagram-img">
+                <img src="images/461151712_1694565114700481_1581459415052851758_n.jpg" alt="Image 2">
+                <div class="overlay">
+                  <a href="https://instagram.com/yourprofile" target="_blank">
+                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="24" height="24" color="#ffffff">
+                      <defs>
+                        <style>
+                          .cls-637b8512f95e86b59c57a11c-1 {
+                            fill: none;
+                            stroke: currentColor;
+                            stroke-miterlimit: 10;
+                          }
+                          .cls-637b8512f95e86b59c57a11c-2 {
+                            fill: currentColor;
+                          }
+                        </style>
+                      </defs>
+                      <rect class="cls-637b8512f95e86b59c57a11c-1" x="1.5" y="1.5" width="21" height="21" rx="3.82"></rect>
+                      <circle class="cls-637b8512f95e86b59c57a11c-1" cx="12" cy="12" r="4.77"></circle>
+                      <circle class="cls-637b8512f95e86b59c57a11c-2" cx="18.2" cy="5.8" r="1.43"></circle>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="instagram-post">
+              <div class="instagram-img">
+                <img src="images/460876548_1284547106017757_8019872243787603462_n.jpg" alt="Image 3">
+                <div class="overlay">
+                  <a href="https://instagram.com/yourprofile" target="_blank">
+                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="24" height="24" color="#ffffff">
+                      <defs>
+                        <style>
+                          .cls-637b8512f95e86b59c57a11c-1 {
+                            fill: none;
+                            stroke: currentColor;
+                            stroke-miterlimit: 10;
+                          }
+                          .cls-637b8512f95e86b59c57a11c-2 {
+                            fill: currentColor;
+                          }
+                        </style>
+                      </defs>
+                      <rect class="cls-637b8512f95e86b59c57a11c-1" x="1.5" y="1.5" width="21" height="21" rx="3.82"></rect>
+                      <circle class="cls-637b8512f95e86b59c57a11c-1" cx="12" cy="12" r="4.77"></circle>
+                      <circle class="cls-637b8512f95e86b59c57a11c-2" cx="18.2" cy="5.8" r="1.43"></circle>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="instagram-post">
+              <div class="instagram-img">
+                <img src="images/CRUSH_46f8c20d-1296-4235-ace4-2b4bf495d3d4.jpg" alt="Image 4">
+                <div class="overlay">
+                  <a href="https://instagram.com/yourprofile" target="_blank">
+                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="24" height="24" color="#ffffff">
+                      <defs>
+                        <style>
+                          .cls-637b8512f95e86b59c57a11c-1 {
+                            fill: none;
+                            stroke: currentColor;
+                            stroke-miterlimit: 10;
+                          }
+                          .cls-637b8512f95e86b59c57a11c-2 {
+                            fill: currentColor;
+                          }
+                        </style>
+                      </defs>
+                      <rect class="cls-637b8512f95e86b59c57a11c-1" x="1.5" y="1.5" width="21" height="21" rx="3.82"></rect>
+                      <circle class="cls-637b8512f95e86b59c57a11c-1" cx="12" cy="12" r="4.77"></circle>
+                      <circle class="cls-637b8512f95e86b59c57a11c-2" cx="18.2" cy="5.8" r="1.43"></circle>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="instagram-post">
+              <div class="instagram-img">
+                <img src="images/460228883_1703268453807790_8669919693767914124_n.jpg" alt="Image 5">
+                <div class="overlay">
+                  <a href="https://instagram.com/yourprofile" target="_blank">
+                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="24" height="24" color="#ffffff">
+                      <defs>
+                        <style>
+                          .cls-637b8512f95e86b59c57a11c-1 {
+                            fill: none;
+                            stroke: currentColor;
+                            stroke-miterlimit: 10;
+                          }
+                          .cls-637b8512f95e86b59c57a11c-2 {
+                            fill: currentColor;
+                          }
+                        </style>
+                      </defs>
+                      <rect class="cls-637b8512f95e86b59c57a11c-1" x="1.5" y="1.5" width="21" height="21" rx="3.82"></rect>
+                      <circle class="cls-637b8512f95e86b59c57a11c-1" cx="12" cy="12" r="4.77"></circle>
+                      <circle class="cls-637b8512f95e86b59c57a11c-2" cx="18.2" cy="5.8" r="1.43"></circle>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="instagram-post">
+              <div class="instagram-img">
+                <img src="images/francebed_0921_0922.png" alt="Image 6">
+                <div class="overlay">
+                  <a href="https://instagram.com/yourprofile" target="_blank">
+                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="24" height="24" color="#ffffff">
+                      <defs>
+                        <style>
+                          .cls-637b8512f95e86b59c57a11c-1 {
+                            fill: none;
+                            stroke: currentColor;
+                            stroke-miterlimit: 10;
+                          }
+                          .cls-637b8512f95e86b59c57a11c-2 {
+                            fill: currentColor;
+                          }
+                        </style>
+                      </defs>
+                      <rect class="cls-637b8512f95e86b59c57a11c-1" x="1.5" y="1.5" width="21" height="21" rx="3.82"></rect>
+                      <circle class="cls-637b8512f95e86b59c57a11c-1" cx="12" cy="12" r="4.77"></circle>
+                      <circle class="cls-637b8512f95e86b59c57a11c-2" cx="18.2" cy="5.8" r="1.43"></circle>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      
+    </main>
+  
+    <!-- サイトのフッター部分 -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-text-area">
+          <div class="footer-list">
+            <div class="company">
+              <div class="company-name">
+                <p>Interior Shop GOMANGOKU</p>
+              </div>
+              <div class="company-data">
+                <p>〒444-0073<br>愛知県岡崎市能見通り２－３<br>TEL 0564-23-2528<br>info@gomangoku.jp</p>
+              </div>
+            </div>
+            <div class="footer-contair1">
+              <div class="footer-title">
+                <p>FURNITURE</p>
+              </div>
+                <ul class="footer-nav">
+                  <li class="footer-nav-item"><a href="#" class="footer-nav-link">SOFA</a></li>
+                  <li class="footer-nav-item"><a href="#" class="footer-nav-link">CHAIR</a></li>
+                  <li class="footer-nav-item"><a href="#" class="footer-nav-link">DINING TABLE</a></li>
+                  <li class="footer-nav-item"><a href="#" class="footer-nav-link">LIVING / SIDE TABLE</a></li>
+                  <li class="footer-nav-item"><a href="#" class="footer-nav-link">TV BOARD</a></li>
+                  <li class="footer-nav-item"><a href="#" class="footer-nav-link">STORAGE</a></li>
+                  <li class="footer-nav-item"><a href="#" class="footer-nav-link">OTHER</a></li>
+                </ul>
+            </div>
+            <div class="footer-contair2">
+              <div class="footer-title">
+                <p>INTERIOR</p>
+              </div>
+                <ul class="footer-nav">
+                  <li class="footer-nav-item"><a href="#" class="footer-nav-link">LIGHTING</a></li>
+                  <li class="footer-nav-item"><a href="#" class="footer-nav-link">FABRIC</a></li>
+                  <li class="footer-nav-item"><a href="#" class="footer-nav-link">ROOM SPEAKER</a></li>
+                  <li class="footer-nav-item"><a href="#" class="footer-nav-link">INTERIOR</a></li>
+                  <li class="footer-nav-item"><a href="#" class="footer-nav-link">TABLEWARE</a></li>
+                  <li class="footer-nav-item"><a href="#" class="footer-nav-link">ART</a></li>
+                </ul>
+            </div>
+            <div class="footer-contair3">
+              <div class="footer-title">
+                <p>INFORMATION</p>
+              </div>
+                <ul class="footer-nav">
+                  <li class="footer-nav-item"><a href="#" class="footer-nav-link">ご利用ガイド</a></li>
+                  <li class="footer-nav-item"><a href="#" class="footer-nav-link">プライバシーポリシー</a></li>
+                  <li class="footer-nav-item"><a href="#" class="footer-nav-link">特定商取引法に基づく表記</a></li>
+                  <li class="footer-nav-item"><a href="#" class="footer-nav-link">採用情報</a></li>
+                  <li class="footer-nav-item"><a href="#" class="footer-nav-link">お問い合わせ</a></li>
+                </ul>
+            </div>
+          </div>
+        </div>
+        <div class="icon-area">
+          <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="18" height="18" color="#000000"><defs><style>.cls-637b8512f95e86b59c57a11c-1{fill:none;stroke:currentColor;stroke-miterlimit:10;}.cls-637b8512f95e86b59c57a11c-2{fill:currentColor;}</style></defs><rect class="cls-637b8512f95e86b59c57a11c-1" x="1.5" y="1.5" width="21" height="21" rx="3.82"></rect><circle class="cls-637b8512f95e86b59c57a11c-1" cx="12" cy="12" r="4.77"></circle><circle class="cls-637b8512f95e86b59c57a11c-2" cx="18.2" cy="5.8" r="1.43"></circle></svg>
+
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="20" height="20" color="#000000">
+            <defs>
+              <style>
+                .cls-1 {
+                  fill: none;
+                  stroke: currentColor;
+                  stroke-miterlimit: 10;
+                }
+                .cls-2 {
+                  fill: currentColor;
+                }
+              </style>
+            </defs>
+            <path class="cls-2" d="M12.56,22.26c-1.06,0.58-1.02-0.29-0.98-0.56c0.03-0.16,0.15-0.93,0.15-0.93c0.03-0.28,0.07-0.71-0.03-0.99 c-0.12-0.31-0.58-0.47-0.92-0.55C5.74,18.71,2,14.4,2,10.01C2,3.66,7.46,1,12,1s10,2.66,10,9.01C22,14.96,17.44,18.87,12.56,22.26z M9.18,13.19c0-0.29-0.24-0.53-0.51-0.53H7.02v-3.5c0-0.29-0.24-0.53-0.51-0.53S6,9.37,6,9.66v4c0,0.29,0.24,0.53,0.51,0.53h1.94 C8.94,14.22,9.18,13.97,9.18,13.19z M10.68,9.08c0-0.29-0.24-0.53-0.51-0.53s-0.51,0.24-0.51,0.53v4c0,0.29,0.24,0.53,0.51,0.53 s0.51-0.24,0.51-0.53V9.08z M15.35,9.08c0-0.29-0.24-0.53-0.51-0.53c-0.29,0-0.53,0.24-0.53,0.53v2.52l-2.08-2.82 c-0.1-0.13-0.26-0.21-0.42-0.21c-0.06,0-0.11,0.01-0.16,0.03c-0.22,0.07-0.36,0.26-0.36,0.48v4c0,0.29,0.24,0.53,0.53,0.53 s0.53-0.24,0.53-0.53v-2.52l2.08,2.82c0.1,0.13,0.26,0.21,0.42,0.21c0.06,0,0.11-0.01,0.16-0.03c0.22-0.07,0.36-0.26,0.36-0.48 V9.08z M18.28,10.49h-1.44V9.4h1.44c0.29,0,0.53-0.24,0.53-0.53s-0.24-0.53-0.53-0.53h-1.94c-0.29,0-0.51,0.24-0.51,0.53 s0,0.53,0,0.53v2v0.01v2c0,0.29,0.24,0.53,0.51,0.53h1.94c0.29,0,0.53-0.24,0.53-0.53s-0.24-0.53-0.53-0.53h-1.44v-1.44h1.44 c0.29,0,0.53-0.24,0.53-0.53S18.57,10.49,18.28,10.49z"></path>
+          </svg>
+        </div>
+        <div class="footer-text">
+          <p>© 2024 - GOMANGOKU</p>
+        </div>
+      </div>
+    </footer>
+  <!-- SwiperのJavaScriptをnode_modulesから読み込む -->
+    <script src="node_modules/swiper/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
