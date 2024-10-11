@@ -51,6 +51,22 @@ document.getElementById("mask").addEventListener("click", function () {
   mask.classList.remove("active");
 });
 
+function adjustSlideHeight() {
+  // main-section内のswiper-slide要素のみ取得
+  const slides = document.querySelectorAll(".main-section .swiper-slide");
+  const viewportHeight = window.innerHeight;
+
+  slides.forEach((slide) => {
+    slide.style.height = `${viewportHeight}px`;
+  });
+}
+
+// 初回読み込み時に高さを調整
+document.addEventListener("DOMContentLoaded", adjustSlideHeight);
+
+// ウィンドウのリサイズ時にも高さを再調整
+window.addEventListener("resize", adjustSlideHeight);
+
 document.addEventListener("DOMContentLoaded", function () {
   var video = document.getElementById("myVideo");
   video.muted = true; // ミュートに設定

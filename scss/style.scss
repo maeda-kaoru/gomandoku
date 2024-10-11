@@ -171,7 +171,7 @@ $max-mobile-S: 482px;
     }
 
     .header-logo {
-      margin: 0 48px 0 40px;
+      margin: 0 48px;
 
       @include tablet {
         margin: 0 auto;
@@ -546,9 +546,12 @@ $max-mobile-S: 482px;
       }
       
       .swiper-slide {
-        background-position: center; /* 背景画像を中央に設定 */
-        background-size: cover; /* 背景画像がスライド全体に収まるように調整 */
-        background: linear-gradient(to bottom, black 99.2%, white 99% 100%);
+        height: 100vh;
+        .slide-img{
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
       }
 
             /* 画像が真っ黒から表示され、ズームアウトして元に戻るアニメーション */
@@ -572,14 +575,6 @@ $max-mobile-S: 482px;
       .swiper-slide-duplicate-active img {
         animation: fadeZoomIn 1s ease; /* 3秒間でズームアウトしてフェードイン */
       }
-
-      /* 画像の基本スタイル */
-      .swiper-slide img {
-        height: auto;
-        width: 100%;
-        object-fit: cover;
-      }
-      
       
       /* =============================
           ページネーションの見栄えを調整
