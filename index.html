@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>gomangoku</title>
+  <title>GOMANGOKU | 愛知県岡崎市の家具・インテリアショップ</title>
 
   <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
   <link rel="stylesheet" href="css/style.min.css">
@@ -79,24 +79,15 @@
               <li class="nav-item" id="item"><a href="#news" class="nav-link">NEWS</a></li>
               <li class="nav-item" id="item"><a href="#media" class="nav-link">MEDIA</a></li>
               <li class="nav-item" id="item"><a href="#journal" class="nav-link">JOURNAL</a></li>
-              <li class="nav-item" id="item"><a href="#contact" class="nav-link">CONTACT</a></li>
+              <li class="nav-item" id="item"><a href="#contact" class="nav-link" id="last-link">CONTACT</a></li>
             </ul>
           </nav>
           <div class="icon">
-            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="24" height="24" color="#000000">
-              <defs>
-                <style>
-                  .cls-6374f8d9b67f094e4896c670-1 {
-                    fill: none;
-                    stroke: currentColor;
-                    stroke-miterlimit: 10;
-                  }
-                </style>
-              </defs>
-              <circle class="cls-6374f8d9b67f094e4896c670-1" cx="12" cy="7.25" r="5.73"></circle>
-              <path class="cls-6374f8d9b67f094e4896c670-1" d="M1.5,23.48l.37-2.05A10.3,10.3,0,0,1,12,13h0a10.3,10.3,0,0,1,10.13,8.45l.37,2.05"></path>
+            <svg aria-hidden="true" fill="none" focusable="false" width="24" viewBox="0 0 24 24">
+              <path d="M16.125 8.75c-.184 2.478-2.063 4.5-4.125 4.5s-3.944-2.021-4.125-4.5c-.187-2.578 1.64-4.5 4.125-4.5 2.484 0 4.313 1.969 4.125 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M3.017 20.747C3.783 16.5 7.922 14.25 12 14.25s8.217 2.25 8.984 6.497" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></path>
             </svg>
-            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="24" height="24" color="#000000">
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="23" height="23" color="#000000">
               <defs>
                 <style>
                   .cls-6374f8d9b67f094e4896c660-1 {
@@ -109,7 +100,7 @@
               <circle class="cls-6374f8d9b67f094e4896c660-1" cx="9.14" cy="9.14" r="7.64"></circle>
               <line class="cls-6374f8d9b67f094e4896c660-1" x1="22.5" y1="22.5" x2="14.39" y2="14.39"></line>
             </svg>
-            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="24" height="24" color="#000000">
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="23" height="23" color="#000000">
               <defs>
                 <style>
                   .cls-1 {
@@ -135,11 +126,27 @@
           <div class="wrapper">
             <div class="swiper circlePaginationSlider">
               <div class="swiper-wrapper">
-                <div class="swiper-slide">
+                <div class="swiper-slide" id="pc-slide">
                   <img src="images/main-slide1.jpg" alt="img01" class="slide-img" />
                 </div>
-                <div class="swiper-slide">
+                <div class="swiper-slide" id="pc-slide">
                   <img src="images/main-slide2.jpg" alt="img02" class="slide-img" />
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+          <div class="scroll"></div>
+        </div>
+        <div class="container-mobile">
+          <div class="wrapper">
+            <div class="swiper circlePaginationSlider">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide" id="mobile-slide">
+                  <img src="images/main-mobile1.png" alt="img03" class="slide-img" />
+                </div>
+                <div class="swiper-slide" id="mobile-slide">
+                  <img src="images/main-mobile2.png" alt="img04" class="slide-img" />
                 </div>
               </div>
             </div>
@@ -443,20 +450,20 @@
             <div class="news-item">
               <img src="images/francebed_0921_0922.png" alt="news-img-1" class="news-img">
               <a href="#news" class="news-category">NEWS</a>
-              <p class="news-title">FranceBed FAIR in OKAZAKI</p>
-              <p class="news-day">2024年9月21日(土)・22日(日)</p>
+              <p class="news-title">FRANCE BED | PR STUDIO TOYOTA</p>
+              <p class="news-day">2024年10月19日(土)・10月20日(日)</p>
             </div>
             <div class="news-item">
-              <img src="images/gomanngoku__banner202408_3_8d6731ba-8b0b-47e7-93cc-d45275769ec0.jpg" alt="news-img-2" class="news-img">
+              <img src="images/main-slide2.jpg" alt="news-img-2" class="news-img">
+              <a href="#news" class="news-category">NEWS</a>
+              <p class="news-title">KOTATSU FAIR こたつフェア</p>
+              <p class="news-day">2024年10月5日(土)～10月20日(日) </p>
+            </div>
+            <div class="news-item">
+              <img src="images/gomanngoku__banner202408_3_8d6731ba-8b0b-47e7-93cc-d45275769ec0.jpg" alt="news-img-3" class="news-img">
               <a href="#news" class="news-category">NEWS</a>
               <p class="news-title">GOMANGOKU 10th ANNIVERSARY</p>
               <p class="news-day">2024年9月7日(土)～9月29日(日)</p>
-            </div>
-            <div class="news-item">
-              <img src="images/2408_haisomuryo_color_1920x1080_a5a29981-68c9-4114-b7bc-31c8d0574a98.jpg" alt="news-img-3" class="news-img">
-              <a href="#news" class="news-category">NEWS</a>
-              <p class="news-title">オンラインストア配送無料キャンペーン</p>
-              <p class="news-day">2024年9月7日(土)～9月29日(日) </p>
             </div>
           </div>
           <div class="text-center">
@@ -588,7 +595,7 @@
             </div>
             <div class="instagram-post">
               <div class="instagram-img">
-                <img src="images/CRUSH_46f8c20d-1296-4235-ace4-2b4bf495d3d4.jpg" alt="Image 4">
+                <img src="images/main-slide2.jpg" alt="Image 4">
                 <div class="overlay">
                   <a href="https://instagram.com/yourprofile" target="_blank">
                     <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="24" height="24" color="#ffffff">
@@ -728,22 +735,11 @@
           </div>
         </div>
         <div class="icon-area">
-          <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="18" height="18" color="#000000"><defs><style>.cls-637b8512f95e86b59c57a11c-1{fill:none;stroke:currentColor;stroke-miterlimit:10;}.cls-637b8512f95e86b59c57a11c-2{fill:currentColor;}</style></defs><rect class="cls-637b8512f95e86b59c57a11c-1" x="1.5" y="1.5" width="21" height="21" rx="3.82"></rect><circle class="cls-637b8512f95e86b59c57a11c-1" cx="12" cy="12" r="4.77"></circle><circle class="cls-637b8512f95e86b59c57a11c-2" cx="18.2" cy="5.8" r="1.43"></circle></svg>
-
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" width="20" height="20" color="#000000">
-            <defs>
-              <style>
-                .cls-1 {
-                  fill: none;
-                  stroke: currentColor;
-                  stroke-miterlimit: 10;
-                }
-                .cls-2 {
-                  fill: currentColor;
-                }
-              </style>
-            </defs>
-            <path class="cls-2" d="M12.56,22.26c-1.06,0.58-1.02-0.29-0.98-0.56c0.03-0.16,0.15-0.93,0.15-0.93c0.03-0.28,0.07-0.71-0.03-0.99 c-0.12-0.31-0.58-0.47-0.92-0.55C5.74,18.71,2,14.4,2,10.01C2,3.66,7.46,1,12,1s10,2.66,10,9.01C22,14.96,17.44,18.87,12.56,22.26z M9.18,13.19c0-0.29-0.24-0.53-0.51-0.53H7.02v-3.5c0-0.29-0.24-0.53-0.51-0.53S6,9.37,6,9.66v4c0,0.29,0.24,0.53,0.51,0.53h1.94 C8.94,14.22,9.18,13.97,9.18,13.19z M10.68,9.08c0-0.29-0.24-0.53-0.51-0.53s-0.51,0.24-0.51,0.53v4c0,0.29,0.24,0.53,0.51,0.53 s0.51-0.24,0.51-0.53V9.08z M15.35,9.08c0-0.29-0.24-0.53-0.51-0.53c-0.29,0-0.53,0.24-0.53,0.53v2.52l-2.08-2.82 c-0.1-0.13-0.26-0.21-0.42-0.21c-0.06,0-0.11,0.01-0.16,0.03c-0.22,0.07-0.36,0.26-0.36,0.48v4c0,0.29,0.24,0.53,0.53,0.53 s0.53-0.24,0.53-0.53v-2.52l2.08,2.82c0.1,0.13,0.26,0.21,0.42,0.21c0.06,0,0.11-0.01,0.16-0.03c0.22-0.07,0.36-0.26,0.36-0.48 V9.08z M18.28,10.49h-1.44V9.4h1.44c0.29,0,0.53-0.24,0.53-0.53s-0.24-0.53-0.53-0.53h-1.94c-0.29,0-0.51,0.24-0.51,0.53 s0,0.53,0,0.53v2v0.01v2c0,0.29,0.24,0.53,0.51,0.53h1.94c0.29,0,0.53-0.24,0.53-0.53s-0.24-0.53-0.53-0.53h-1.44v-1.44h1.44 c0.29,0,0.53-0.24,0.53-0.53S18.57,10.49,18.28,10.49z"></path>
+          <svg aria-hidden="true" focusable="false" width="24" class="icon icon-instagram" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.4c-2.607 0-2.934.011-3.958.058-1.022.046-1.72.209-2.33.446a4.705 4.705 0 0 0-1.7 1.107 4.706 4.706 0 0 0-1.108 1.7c-.237.611-.4 1.31-.446 2.331C2.41 9.066 2.4 9.392 2.4 12c0 2.607.011 2.934.058 3.958.046 1.022.209 1.72.446 2.33a4.706 4.706 0 0 0 1.107 1.7c.534.535 1.07.863 1.7 1.108.611.237 1.309.4 2.33.446 1.025.047 1.352.058 3.959.058s2.934-.011 3.958-.058c1.022-.046 1.72-.209 2.33-.446a4.706 4.706 0 0 0 1.7-1.107 4.706 4.706 0 0 0 1.108-1.7c.237-.611.4-1.31.446-2.33.047-1.025.058-1.352.058-3.959s-.011-2.934-.058-3.958c-.047-1.022-.209-1.72-.446-2.33a4.706 4.706 0 0 0-1.107-1.7 4.705 4.705 0 0 0-1.7-1.108c-.611-.237-1.31-.4-2.331-.446C14.934 2.41 14.608 2.4 12 2.4Zm0 1.73c2.563 0 2.867.01 3.88.056.935.042 1.443.199 1.782.33.448.174.768.382 1.104.718.336.336.544.656.718 1.104.131.338.287.847.33 1.783.046 1.012.056 1.316.056 3.879 0 2.563-.01 2.867-.056 3.88-.043.935-.199 1.444-.33 1.782a2.974 2.974 0 0 1-.719 1.104 2.974 2.974 0 0 1-1.103.718c-.339.131-.847.288-1.783.33-1.012.046-1.316.056-3.88.056-2.563 0-2.866-.01-3.878-.056-.936-.042-1.445-.199-1.783-.33a2.974 2.974 0 0 1-1.104-.718 2.974 2.974 0 0 1-.718-1.104c-.131-.338-.288-.847-.33-1.783-.047-1.012-.056-1.316-.056-3.879 0-2.563.01-2.867.056-3.88.042-.935.199-1.443.33-1.782.174-.448.382-.768.718-1.104a2.974 2.974 0 0 1 1.104-.718c.338-.131.847-.288 1.783-.33C9.133 4.14 9.437 4.13 12 4.13Zm0 11.07a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4Zm0-8.13a4.93 4.93 0 1 0 0 9.86 4.93 4.93 0 0 0 0-9.86Zm6.276-.194a1.152 1.152 0 1 1-2.304 0 1.152 1.152 0 0 1 2.304 0Z" fill="currentColor"></path>
+          </svg>
+          <svg aria-hidden="true" focusable="false" width="24"viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2c6.066 0 11 4.005 11 8.927 0 1.97-.764 3.744-2.358 5.492-2.307 2.656-7.468 5.892-8.642 6.386-1.142.481-1.01-.271-.957-.569l.004-.024.157-.941c.037-.281.075-.717-.035-.995-.124-.306-.611-.465-.97-.542C4.914 19.034 1 15.339 1 10.927 1 6.005 5.935 2 12 2ZM7.91 13.769a.21.21 0 0 0 .21-.21v-.78a.21.21 0 0 0-.21-.21H5.808V8.758a.21.21 0 0 0-.21-.21h-.78a.21.21 0 0 0-.21.21V13.559c0 .116.094.21.21.21h3.09Zm11.43 0a.21.21 0 0 0 .21-.21v-.78a.21.21 0 0 0-.21-.21h-2.1v-.81h2.1a.21.21 0 0 0 .21-.21v-.78a.21.21 0 0 0-.21-.21h-2.1v-.81h2.1a.21.21 0 0 0 .21-.21v-.781a.21.21 0 0 0-.21-.21h-3.09a.21.21 0 0 0-.21.21V13.559c0 .116.094.21.21.21h3.091ZM8.99 8.548h.78a.21.21 0 0 1 .21.21v4.8a.21.21 0 0 1-.21.21h-.78a.21.21 0 0 1-.21-.21v-4.8a.21.21 0 0 1 .21-.21Zm6.09 0h-.78a.21.21 0 0 0-.21.21v2.851l-2.196-2.966a.208.208 0 0 0-.017-.022l-.002-.001a.257.257 0 0 0-.012-.013l-.001-.001-.003-.003a.376.376 0 0 0-.011-.01l-.006-.004a.24.24 0 0 0-.011-.007l-.004-.003-.003-.001-.002-.001a.13.13 0 0 0-.01-.005l-.006-.004-.002-.001-.01-.004-.007-.003a.194.194 0 0 0-.01-.003h-.003l-.007-.003a.267.267 0 0 0-.013-.002l-.009-.002-.011-.001h-.794a.21.21 0 0 0-.21.209v4.8c0 .117.094.21.21.21h.78a.21.21 0 0 0 .21-.21v-2.85l2.199 2.97c.015.022.034.04.054.053l.003.002a.22.22 0 0 0 .013.008l.006.003a.16.16 0 0 0 .01.005l.01.005.005.001h.002c.005.003.01.004.014.005l.004.001a.211.211 0 0 0 .055.008h.775a.21.21 0 0 0 .21-.21V8.758a.21.21 0 0 0-.21-.21Z" fill="currentColor"></path>
           </svg>
         </div>
         <div class="footer-text">

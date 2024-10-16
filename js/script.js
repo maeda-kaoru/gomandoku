@@ -51,6 +51,29 @@ document.getElementById("mask").addEventListener("click", function () {
   mask.classList.remove("active");
 });
 
+// nav-listの折り返しを検知し、gapを調整
+function adjustGap() {
+  const navList = document.querySelector(".nav-list");
+  const navItems = navList.querySelectorAll(".nav-item");
+
+  // 初期設定
+  navList.style.gap = "0 40px";
+
+  // 折り返しを検知
+  let lastTopOffset = navItems[0].offsetTop;
+  for (let i = 1; i < navItems.length; i++) {
+    if (navItems[i].offsetTop !== lastTopOffset) {
+      // 折り返しが検知されたらgapを変更
+      navList.style.gap = "0 20px";
+      break;
+    }
+  }
+}
+
+// 初期ロード時とウィンドウリサイズ時に呼び出し
+window.addEventListener("load", adjustGap);
+window.addEventListener("resize", adjustGap);
+
 function adjustSlideHeight() {
   // main-section内のswiper-slide要素のみ取得
   const slides = document.querySelectorAll(".main-section .swiper-slide");
@@ -73,43 +96,83 @@ document.addEventListener("DOMContentLoaded", function () {
   video.play(); // 自動再生
 });
 
-const circlePaginationSlider = new Swiper(".circlePaginationSlider", {
-  loop: true, // スライドをループさせる
-  speed: 500, // スライドのアニメーション速度（ミリ秒）
-  effect: "fade", // フェード効果を適用
+// PC用Swiperの初期化
+new Swiper(".container .circlePaginationSlider", {
+  loop: true,
+  slidesPerView: 1,
+  speed: 500,
+  effect: "fade",
   autoplay: {
-    delay: 10000, // 自動再生の遅延（ミリ秒）
-    disableOnInteraction: false, // ユーザー操作後も自動再生を維持
+    delay: 10000,
+    disableOnInteraction: false,
   },
   pagination: {
-    el: ".swiper-pagination", // ページネーションの要素を指定
-    clickable: true, // ページネーションをクリック可能にする
+    el: ".container .swiper-pagination",
+    clickable: true,
     renderBullet: function (index, className) {
-      // ページネーションの丸いボタンを生成するカスタム関数
       return (
         '<div class="' +
         className +
         ' circle-pagination">' +
         '<div class="circle-pagination__inner">' +
-        '<svg width="25" height="25" class="circle-svg">' + // SVGをcircle-svgクラスに変更
+        '<svg width="25" height="25" class="circle-svg">' +
         '<circle cx="12.5" cy="12.5" r="11"></circle>' +
-        "</svg>" +
-        "</div></div>"
+        "</svg></div></div>"
       );
     },
   },
   on: {
     slideChangeTransitionStart: function () {
-      // スライドが変更されるときにアクティブページネーションでのみSVGアニメーションを動かす
       document
-        .querySelectorAll(".swiper-pagination-bullet")
+        .querySelectorAll(".container .swiper-pagination-bullet")
         .forEach((bullet) => {
           const svg = bullet.querySelector(".circle-svg");
-          if (bullet.classList.contains("swiper-pagination-bullet-active")) {
-            svg.style.display = "block"; // アクティブ時にSVGを表示
-          } else {
-            svg.style.display = "none"; // 非アクティブ時にSVGを非表示
-          }
+          svg.style.display = bullet.classList.contains(
+            "swiper-pagination-bullet-active"
+          )
+            ? "block"
+            : "none";
+        });
+    },
+  },
+});
+
+// モバイル用Swiperの初期化
+new Swiper(".container-mobile .circlePaginationSlider", {
+  loop: true,
+  slidesPerView: 1,
+  speed: 500,
+  effect: "fade",
+  autoplay: {
+    delay: 10000,
+    disableOnInteraction: false,
+  },
+  pagination: {
+    el: ".container-mobile .swiper-pagination",
+    clickable: true,
+    renderBullet: function (index, className) {
+      return (
+        '<div class="' +
+        className +
+        ' circle-pagination">' +
+        '<div class="circle-pagination__inner">' +
+        '<svg width="25" height="25" class="circle-svg">' +
+        '<circle cx="12.5" cy="12.5" r="11"></circle>' +
+        "</svg></div></div>"
+      );
+    },
+  },
+  on: {
+    slideChangeTransitionStart: function () {
+      document
+        .querySelectorAll(".container-mobile .swiper-pagination-bullet")
+        .forEach((bullet) => {
+          const svg = bullet.querySelector(".circle-svg");
+          svg.style.display = bullet.classList.contains(
+            "swiper-pagination-bullet-active"
+          )
+            ? "block"
+            : "none";
         });
     },
   },
