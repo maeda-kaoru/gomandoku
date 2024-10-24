@@ -42,11 +42,19 @@ a{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5px;
-  margin: 96px 0 48px 0;
+  gap: 20px;
+  margin: 97px 0 48px 0;
+  p{
+    line-height: 20px;
+  }
   h2{
-    margin-top: 20px;
-    font-size: 32px;
+    font-size: max(0.6875rem, clamp(1.25rem, 1.067rem + 0.78vw, 1.75rem));
+    line-height: 37px;
+    font-weight: 500;
+    color: #1c1b1b;
+  }
+  h1{
+    font-size: max(0.6875rem, clamp(1.375rem, 1.15rem + 1vw, 2rem));
     line-height: 37px;
     font-weight: 500;
     color: #1c1b1b;
@@ -62,7 +70,7 @@ a{
   border-radius: 0;
   padding: 10px 28px;
   background: #373737;
-  margin: 48px 0 60px;
+  margin: 48px 0 96px;
   .button-text{
     text-decoration: none;
     color: #ffffff;
@@ -71,10 +79,6 @@ a{
     white-space: nowrap;
     opacity: 0.8;
   }
-}
-
-.price-color{
-  color: rgba(28, 26, 26, 0.65); 
 }
 
 $max-dropdwon: 1399px;
@@ -245,7 +249,7 @@ $max-mobile-S: 482px;
           left: 50%;
           width: 20px;
           height: 1.5px;
-          background-color: #4B4B4B; // バツの色
+          background-color: #1c1c1c; // バツの色
           transform-origin: center;
         }
     
@@ -278,6 +282,7 @@ $max-mobile-S: 482px;
           z-index: 1005;
           gap: 0;
           width: calc(100% - 40px);
+          height: 100vh;
         }
     
         .nav-item {
@@ -285,16 +290,39 @@ $max-mobile-S: 482px;
           display: flex;
           justify-content: space-between; // 要素を左右に分ける
           align-items: center; // 縦方向に中央揃え
+
           
           @include tablet {
             width: 100%;
             padding: 20px 0;
             border-bottom: 1px solid #ddd;
+            opacity: 0;
+            transform: translateY(20px);
+            color: #1c1c1c;
+          }
+          @include mobile {
+            padding: 16px 0;
           }
 
-          &:last-child {
+          &:nth-child(7) {
             @include tablet {
               border-bottom: none;
+            }
+          }
+          &:last-child {
+            visibility: hidden; // 初期状態では見えない
+            @include mobile() {
+              visibility: visible; // モバイル時に表示
+              border-bottom: none;
+              margin: auto 0 20px 0;
+              justify-content: flex-start;
+              gap: 15px;
+            }
+          
+            a{
+              @include mobile {
+                font-size: 10px;
+              }
             }
             p{
               display: none;
@@ -302,6 +330,14 @@ $max-mobile-S: 482px;
               @include tablet {
                 display: block;
               }
+            }
+          }
+          
+          .rigth-svg-icon{
+            display: none;
+            @include mobile {
+              display: block;
+              margin: 0 0 0 auto;
             }
           }
     
@@ -317,7 +353,7 @@ $max-mobile-S: 482px;
             position: relative;
     
             @include tablet {
-              color: black;
+              color: #1c1c1c;
               z-index: 1006;
               
             }
@@ -401,7 +437,7 @@ $max-mobile-S: 482px;
               left: -390%;
             }
           }
-    
+          
           &:hover .dropdown {
             display: block;
             display: flex;
@@ -410,6 +446,9 @@ $max-mobile-S: 482px;
             @include dropdown{
               gap: 2.5rem;
             }
+          }
+          .dropdown:hover {
+            display: flex;
           }
           .footer-contair1{
             animation: slideUp 0.4s ease forwards; /* アニメーション適用 */
@@ -450,11 +489,18 @@ $max-mobile-S: 482px;
               }
             }
           }
+          .accunt-iocn{
+            display: none;
+            @include mobile {
+              display: block;
+            }
+          }
         }
         // 追加したクラスを利用してアニメーション適用
   .nav-item.animate {
-    opacity: 0; /* 初期状態は透明 */
-    animation: slideUpDwon 0.5s ease forwards; /* アニメーション適用 */
+    opacity: 1;
+    transform: translateY(0); /* 元の位置に戻す */
+    transition: opacity 0.5s ease, transform 0.5s ease;
 
     &:nth-child(1) {
       animation-delay: 0.05s;
@@ -477,20 +523,12 @@ $max-mobile-S: 482px;
     &:nth-child(7) {
       animation-delay: 0.35s;
     }
+    &:nth-child(8) {
+      animation-delay: 0.4s;
+    }
   }
-      }
-    }
-    @keyframes slideUpDwon {
-      0% {
-        transform: translateY(-5px); /* 下から上に移動 */
-        opacity: 0.4;
-      }
-      100% {
-        transform: translateY(0); /* 元の位置に戻る */
-        opacity: 1;
-      }
-    }
-    
+  }
+  }
 
     .icon {
       display: flex;
@@ -508,6 +546,11 @@ $max-mobile-S: 482px;
         height: 24px;
         color: white;
         transition: color 0.3s ease;
+      }
+      .accunt-iocn {
+        @include mobile {
+          display: none;
+        }
       }
     }
 
@@ -527,6 +570,7 @@ $max-mobile-S: 482px;
 
 
   .main-section{
+    border-bottom: solid 1px #ccc;
     .container{
       display: block;
       @include mobile {
@@ -789,11 +833,25 @@ $max-mobile-S: 482px;
 
 .collection-section{
   border-bottom: solid 1px #ccc;
+  .button{
+    @include tablet {
+      margin: 48px 0 60px;
+    }
+  }
 }
 
 .collection-section .container{
     position: relative;
     margin: 0 48px;
+    @include tablet {
+      margin: 0 32px;
+    }
+    @include mobile {
+      margin: 0 20px;
+    }
+    .section-title{
+      margin: 121px 0 48px 0;
+    }
 
 
 .swiper {
@@ -807,12 +865,35 @@ $max-mobile-S: 482px;
   text-align: center;
   font-size: 12px;
   position: relative; /* 画像を絶対位置に配置するため */
+  opacity: 0; /* 初期状態は透明 */
+  transform: translateY(50px); /* 下に50px移動した状態 */
+  animation: slideUp 1s ease forwards; /* アニメーション適用 */
+
+        /* アニメーションをディレイして順番に表示 */
+        &:nth-child(1) {
+          animation-delay: 0.2s;
+        }
+        &:nth-child(2) {
+          animation-delay: 0.4s;
+        }
+        &:nth-child(3) {
+          animation-delay: 0.6s;
+        }
+        &:nth-child(4) {
+          animation-delay: 0.8s;
+        }
+        &:nth-child(5) {
+          animation-delay: 1s;
+        }
 }
 
 /* square-containerの表示アニメーション */
 .swiper-slide:hover .square-container {
   opacity: 1;
   animation: slideUpPlus 0.3s forwards;
+  @include tablet {
+    animation: none;
+  }
 }
 
 /* square-containerのプラスボタン表示 */
@@ -822,7 +903,15 @@ $max-mobile-S: 482px;
 
 /* pタグのスタイル */
 .swiper-slide p {
-  margin: 20px;
+  margin-bottom: 4px;
+  line-height: 20.5px;
+}
+
+.price-color{
+  color: rgba(28, 26, 26, 0.65); 
+}
+.text-area{
+  margin: 17px 0 12px;
 }
 
 /* 画像コンテナ */
@@ -831,6 +920,13 @@ $max-mobile-S: 482px;
   width: 100%;
   height: auto;
   overflow: hidden; /* 画像がはみ出ないようにする */
+  @include mobile {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    max-width: 300px;
+    max-height: 300px;
+  }
 }
 
 /* 1枚目の画像 */
@@ -843,15 +939,12 @@ $max-mobile-S: 482px;
 
 /* 2枚目の画像（デフォルトで非表示） */
 .hover-img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
   position: absolute;
-  top: 50%;
+  top: 49.5%;
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
-  transition: opacity 0.1s ease; /* 画像切り替え時のフェードアニメーション */
+  transition: opacity 0.3s ease; /* 画像切り替え時のフェードアニメーション */
 }
 
 /* ホバー時に画像が切り替わる */
@@ -878,25 +971,37 @@ $max-mobile-S: 482px;
   align-items: center;
   opacity: 0;
   transition: opacity 0.3s ease;
+  @include tablet {
+    opacity: 1 !important;
+  }
 }
 
 /* square-containerホバー時のプラスボタンアニメーション */
 .square-container:hover .dli-plus {
   animation: rotatePlus 0.3s 1; /* 回転アニメーション */
+  @include tablet {
+    animation: none;
+  }
 }
 /* square-containerからホバーを外した時に回転を戻す */
 .square-container:not(:hover) .dli-plus {
   animation: rotateBack 0.3s forwards; /* ホバー解除で元に戻す */
+  @include tablet {
+    animation: none;
+  }
 }
 .square-container:not(:hover) {
   transform: rotate(0deg); /* ホバーを外すと元に戻る */
+  @include tablet {
+    animation: none;
+  }
 }
 
 /* プラスボタンのデザイン */
 .dli-plus {
-  width: 10px;
-  height: 2px;
-  background-color: #333;
+  width: 12px;
+  height: 1.3px;
+  background-color: black;
   position: relative;
 }
 
@@ -967,6 +1072,7 @@ $max-mobile-S: 482px;
   display: block; /* クリックでactiveクラスが付いたものだけ表示 */
 }
 
+
 /* square-containerの表示アニメーション */
 @keyframes slideUpPlus {
   0% {
@@ -1029,7 +1135,7 @@ $max-mobile-S: 482px;
 .swiper-button-next {
   display: none;
   position: absolute;
-  top: 45%;
+  top: 49%;
   right: 2%;
   width: 50px;
   height: 50px;
@@ -1045,7 +1151,7 @@ $max-mobile-S: 482px;
 .swiper-button-prev {
   display: none;
   position: absolute;
-  top: 45%;
+  top: 49%;
   left: 2%;
   width: 50px;
   height: 50px;
@@ -1063,12 +1169,18 @@ $max-mobile-S: 482px;
   display: flex;
   animation: slideDownNext 0.3s forwards;
   opacity: 1;
+  @include tablet {
+      display: none;
+    }
 }
 
 .swiper:hover .swiper-button-prev {
   display: flex;
   animation: slideDownPrev 0.3s forwards;
   opacity: 1;
+  @include tablet {
+    display: none;
+  }
 }
 
 /* 左の矢印 (swiper-button-prev) のアニメーション */
@@ -1236,20 +1348,31 @@ $max-mobile-S: 482px;
 .news-section {
   margin: 0 48px;
   @include tablet {
-    margin: 0 32px;
-    overflow: hidden;
+    margin: 0;
   }
-  @include mobile {
-    margin: 0 20px;
+  .section-title{
+    @include tablet {
+      margin: 61px 0 48px;
+    }
   }
 
   .news-list {
     display: flex;
     justify-content: center;
     gap: 60px;
+    overflow-x: auto; /* 横スクロールを可能に */
+    scroll-snap-type: x mandatory; /* スクロールスナップ */
+    -ms-overflow-style: none; /* IE/Edge用スクロールバー非表示 */
+    scrollbar-width: none; /* Firefox用スクロールバー非表示 */
+    &::-webkit-scrollbar {
+      display: none; /* Chrome/Safari/Opera用スクロールバー非表示 */
+    }
+
     @include tablet {
-      gap: 30px;
-      white-space: nowrap; // 折り返しを防ぐ（タブレット時のみ）
+      padding: 0 32px;
+      gap: 18px;
+      white-space: nowrap;
+      justify-content: flex-start; /* 左揃え */
     }
 
     .news-item {
@@ -1257,25 +1380,48 @@ $max-mobile-S: 482px;
       text-align: center;
       max-width: 380px;
       overflow: hidden;
-      opacity: 0; /* 初期状態は透明 */
-      transform: translateY(50px); /* 下に50px移動した状態 */
-      animation: slideUp 1s ease forwards; /* アニメーション適用 */
-      @include tablet {
-        width: 48%;
-        flex-shrink: 0;
-      }
-      @include mobile {
-        width: 100%;
-      }
-
-      /* アニメーションをディレイして順番に表示 */
-      &:nth-child(1) {
-        animation-delay: 0.2s;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: slideUp 1s ease forwards;
+      scroll-snap-align: start;
+      &:first-child {
+        display: none;
+        @include tablet {
+          display: block;
+          width: 18px;
+          opacity: 0;
+        }
+        @include mobile {
+          width: 2px;
+        }
       }
       &:nth-child(2) {
-        animation-delay: 0.4s;
+        @include mobile {
+          margin-left: 0;
+        }
+      }
+
+      
+      @include tablet {
+        width: 46%;
+        flex-shrink: 0;
+        margin-left: 12px;
+      }
+      @include mobile {
+        width: 90%;
+        flex-shrink: 0;
+      }
+
+      &:nth-child(1) {
+        animation-delay: 0s;
+      }
+      &:nth-child(2) {
+        animation-delay: 0.2s;
       }
       &:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      &:nth-child(4) {
         animation-delay: 0.6s;
       }
     }
@@ -1286,7 +1432,7 @@ $max-mobile-S: 482px;
       transition: transform 6s ease;
 
       &:hover {
-        transform: scale(1.1); // 1.1倍にズーム
+        transform: scale(1.1); /* ズーム効果 */
       }
     }
 
@@ -1309,16 +1455,25 @@ $max-mobile-S: 482px;
       font-size: 18px;
       font-weight: 500;
       letter-spacing: 2px;
+      @include mobile {
+        font-size: 16px;
+      }
     }
 
     .news-day {
       text-align: start;
       font-size: 14px;
       font-family: Nutino Sans, sans-serif;
+      @include mobile {
+        font-size: 12px;
+      }
     }
   }
-  .button{
-    margin-bottom: 0;
+
+  .button {
+    @include tablet {
+      margin: 48px 0 60px;
+    }
   }
 }
 
@@ -1335,12 +1490,18 @@ $max-mobile-S: 482px;
 }
 
 
+
+
+
 .journal-section {
   .container {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    .section-title{
+        margin: 0 0 48px;
+    }
 
     .journal-img-containar{
       width: 100%;
@@ -1398,8 +1559,8 @@ $max-mobile-S: 482px;
 
           .button{
             margin: 32px 0;
-            @include mobile-S {
-              margin: 0 0 40px;
+            @include tablet {
+              margin: 24px 0 40px;
             }
           }
         }
@@ -1496,7 +1657,8 @@ $max-mobile-S: 482px;
   .video-area {
     position: relative;
     width: 100%;
-    height: 672px;
+    aspect-ratio: 478 / 625;
+    max-height: 672px;
 
     .video {
       width: 100%;
@@ -1523,10 +1685,18 @@ $max-mobile-S: 482px;
       .film-title {
         font-size: 21px;
         margin: 20px 0;
+        letter-spacing: 2px;
+        @include mobile {
+          font-size: 16px;
+        }
       }
 
       .tagline {
+        white-space: nowrap;
         font-size: 14px;
+        @include mobile {
+          font-size: 12px;
+        }
       }
     }
   }
@@ -1536,7 +1706,10 @@ $max-mobile-S: 482px;
 
 .instagram-section {
   .section-title{
-    margin: 64px 0;
+    margin: 40px 0;
+    h2{
+      font-size: 28px;
+    }
   }
   .instagram-gallery {
     display: flex;
@@ -1632,6 +1805,7 @@ $max-mobile-S: 482px;
         .company-name p{
           font-family: Montserrat,sans-serif;
           font-size: 12px;
+          line-height: 20px;
           margin-bottom: 20px;
           color: rgba(106, 106, 106,);
           @include mobile {
@@ -1642,6 +1816,10 @@ $max-mobile-S: 482px;
         .company-data p{
           font-size: 14px;
           color: rgba(106, 106, 106, 0.65);
+          line-height: 20px;
+          @include mobile {
+            font-size: 12px;
+          }
         }
       }
 
@@ -1658,6 +1836,7 @@ $max-mobile-S: 482px;
         .footer-title p{
           font-family: Montserrat,sans-serif;
           font-size: 12px;
+          line-height: 20px;
           margin-bottom: 20px;
           color: rgba(106, 106, 106,);
           @include mobile {
@@ -1667,9 +1846,11 @@ $max-mobile-S: 482px;
         .footer-nav{
           list-style: none;
           .footer-nav-item{
+            line-height: 18.8px;
             margin-bottom: 14px;
             @include tablet {
               margin-bottom: 10px;
+              line-height: 22px;
             }
             a{
               text-decoration: none;
@@ -1680,8 +1861,11 @@ $max-mobile-S: 482px;
               }
 
               &:hover {
-                color: #4B4B4B;
+                color: rgba(106, 106, 106,);
               }
+            }
+            &:last-child {
+              margin-bottom: 0;
             }
           }
         }
@@ -1697,6 +1881,7 @@ $max-mobile-S: 482px;
   .footer-text p{
     margin: 48px 0;
     color: rgba(106, 106, 106, 0.65);
+    line-height: 18px;
     @include tablet {
       font-size: 11px;
       text-align: center;

@@ -51,22 +51,24 @@ document.getElementById("mask").addEventListener("click", function () {
   mask.classList.remove("active");
 });
 
-// nav-listの折り返しを検知し、gapを調整
 function adjustGap() {
   const navList = document.querySelector(".nav-list");
   const navItems = navList.querySelectorAll(".nav-item");
 
-  // 初期設定
-  navList.style.gap = "0 40px";
+  // 999px以上の場合にのみgapを調整
+  if (window.innerWidth >= 999) {
+    let lastTopOffset = navItems[0].offsetTop;
+    navList.style.gap = "0 40px";
 
-  // 折り返しを検知
-  let lastTopOffset = navItems[0].offsetTop;
-  for (let i = 1; i < navItems.length; i++) {
-    if (navItems[i].offsetTop !== lastTopOffset) {
-      // 折り返しが検知されたらgapを変更
-      navList.style.gap = "0 20px";
-      break;
+    for (let i = 1; i < navItems.length; i++) {
+      if (navItems[i].offsetTop !== lastTopOffset) {
+        navList.style.gap = "0 20px";
+        break;
+      }
     }
+  } else {
+    // 999px以下の場合はメディアクエリで指定されたgapに戻す
+    navList.style.gap = ""; // CSSのデフォルト値に戻す
   }
 }
 
@@ -92,8 +94,23 @@ window.addEventListener("resize", adjustSlideHeight);
 
 document.addEventListener("DOMContentLoaded", function () {
   var video = document.getElementById("myVideo");
-  video.muted = true; // ミュートに設定
-  video.play(); // 自動再生
+
+  // 動画をミュートに設定
+  video.muted = true;
+
+  // IntersectionObserverの設定
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        video.play(); // セクションが表示されたら再生
+      } else {
+        video.pause(); // セクションが画面外に出たら一時停止
+      }
+    });
+  });
+
+  // .video-area セクションを監視
+  observer.observe(document.querySelector(".video-area"));
 });
 
 // PC用Swiperの初期化
@@ -181,24 +198,31 @@ new Swiper(".container-mobile .circlePaginationSlider", {
 var swiper = new Swiper(".mySwiper", {
   slidesPerGroup: 5,
   slidesPerView: 5,
-  spaceBetween: 60,
+  spaceBetween: 48,
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
     hideOnClick: true, // スライドの端に来たらボタンを非表示にする
   },
+  freeMode: {
+    enabled: true, // freeModeを有効にする
+    momentumRatio: 0.3, // 慣性の強さを調整
+    momentumVelocityRatio: 0.35, // スワイプ速度に対する慣性の反応を調整
+  },
   breakpoints: {
     300: {
-      slidesPerGroup: 2,
-      slidesPerView: 2,
+      slidesPerGroup: 1.5,
+      slidesPerView: 1.5,
       spaceBetween: 20,
+      navigation: false,
     },
     700: {
       slidesPerGroup: 3,
       slidesPerView: 3,
       spaceBetween: 24,
+      navigation: false,
     },
-    999: {
+    1000: {
       slidesPerGroup: 4,
       slidesPerView: 4,
       spaceBetween: 48,
@@ -206,7 +230,7 @@ var swiper = new Swiper(".mySwiper", {
     1150: {
       slidesPerGroup: 5,
       slidesPerView: 5,
-      spaceBetween: 60,
+      spaceBetween: 48,
     },
   },
 });
@@ -264,4 +288,20 @@ slides.forEach((slide) => {
       box.style.pointerEvents = "none"; // クリック不可に設定
     });
   });
+});
+document.addEventListener("DOMContentLoaded", function () {
+  // Intersection Observer を作成
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // セクションが表示されたらアニメーションクラスを追加
+        entry.target.classList.add("animate");
+        observer.unobserve(entry.target); // 一度アニメーションしたら監視を解除
+      }
+    });
+  });
+
+  // 監視対象の要素（セクション）を指定
+  const section = document.querySelector(".journal-img-area");
+  observer.observe(section);
 });
