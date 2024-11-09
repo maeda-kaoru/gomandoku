@@ -26,6 +26,13 @@ document.querySelector(".hamburger").addEventListener("click", function () {
   nav.classList.toggle("active");
   mask.classList.toggle("active");
 
+  // bodyにno-scrollクラスを追加/削除
+  if (nav.classList.contains("active")) {
+    document.body.classList.add("no-scroll");
+  } else {
+    document.body.classList.remove("no-scroll");
+  }
+
   // アニメーションクラスを一度削除して再適用
   navItems.forEach((item, index) => {
     item.classList.remove("animate");
@@ -41,6 +48,9 @@ document.getElementById("closeButton").addEventListener("click", function () {
 
   nav.classList.remove("active");
   mask.classList.remove("active");
+
+  // bodyからno-scrollクラスを削除
+  document.body.classList.remove("no-scroll");
 });
 
 document.getElementById("mask").addEventListener("click", function () {
@@ -49,6 +59,9 @@ document.getElementById("mask").addEventListener("click", function () {
 
   nav.classList.remove("active");
   mask.classList.remove("active");
+
+  // bodyからno-scrollクラスを削除
+  document.body.classList.remove("no-scroll");
 });
 
 function adjustGap() {
@@ -198,7 +211,7 @@ new Swiper(".container-mobile .circlePaginationSlider", {
 var swiper = new Swiper(".mySwiper", {
   slidesPerGroup: 5,
   slidesPerView: 5,
-  spaceBetween: 48,
+  spaceBetween: 60,
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
@@ -227,7 +240,7 @@ var swiper = new Swiper(".mySwiper", {
       slidesPerView: 4,
       spaceBetween: 48,
     },
-    1150: {
+    1280: {
       slidesPerGroup: 5,
       slidesPerView: 5,
       spaceBetween: 48,
@@ -289,19 +302,90 @@ slides.forEach((slide) => {
     });
   });
 });
-document.addEventListener("DOMContentLoaded", function () {
-  // Intersection Observer を作成
-  const observer = new IntersectionObserver((entries, observer) => {
+// news-item要素をすべて取得
+const newsItems = document.querySelectorAll(".news-item");
+const newsOptions = {
+  threshold: 0.1, // 要素が10%表示されたらアニメーション発火
+  rootMargin: "0px 0px 50px 0px", // 50px手前でアニメーションを開始
+};
+
+// newsObserverを設定
+const newsObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      // `show`クラスを追加してアニメーションを発火
+      entry.target.classList.add("show");
+      observer.unobserve(entry.target); // アニメーション発火後に監視解除
+    }
+  });
+}, newsOptions);
+
+// 各 news-item にオブザーバーを適用
+newsItems.forEach((item) => {
+  newsObserver.observe(item);
+});
+
+// swiper-slide 要素をすべて取得
+const swiperSlides = document.querySelectorAll(".swiper-slide");
+
+// IntersectionObserverの設定（10%表示で発火）
+const swiperObserver = new IntersectionObserver(
+  (entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        // セクションが表示されたらアニメーションクラスを追加
-        entry.target.classList.add("animate");
-        observer.unobserve(entry.target); // 一度アニメーションしたら監視を解除
+        entry.target.classList.add("show"); // 表示領域に入ったらアニメーションを発火
+      } else {
+        entry.target.classList.remove("show"); // 表示領域を離れたらクラスを削除して再度監視
       }
     });
+  },
+  { threshold: 0.1, rootMargin: "0px 0px 50px 0px" }
+);
+
+// 各 swiper-slide 要素にオブザーバーを適用
+swiperSlides.forEach((slide) => {
+  swiperObserver.observe(slide);
+});
+
+// .journal-img-areaと.journal-text要素を取得
+const journalSection = document.querySelector(".journal-img-area");
+const journalText = document.querySelector(".journal-text");
+
+const observerOptions = {
+  threshold: 0.1, // 要素が10%表示されたらアニメーション発火
+  rootMargin: "0px 0px -50px 0px", // 50px手前でアニメーションを開始
+};
+
+// Observerの設定
+const areaObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      // .journal-img-areaと.journal-textにshowクラスを追加
+      journalSection.classList.add("show");
+      journalText.classList.add("show");
+      observer.unobserve(entry.target); // アニメーション発火後に監視解除
+    }
+  });
+}, observerOptions);
+
+// .journal-img-areaを監視
+areaObserver.observe(journalSection);
+document.addEventListener("DOMContentLoaded", () => {
+  const navItem = document.querySelector(".nav-item");
+  const dropdown = document.querySelector(".dropdown");
+
+  let hideTimeout;
+
+  navItem.addEventListener("mouseenter", () => {
+    clearTimeout(hideTimeout); // 遅延をクリアして表示
+    dropdown.style.opacity = "1";
+    dropdown.style.visibility = "visible";
   });
 
-  // 監視対象の要素（セクション）を指定
-  const section = document.querySelector(".journal-img-area");
-  observer.observe(section);
+  navItem.addEventListener("mouseleave", () => {
+    hideTimeout = setTimeout(() => {
+      dropdown.style.opacity = "0";
+      dropdown.style.visibility = "hidden";
+    }, 300); // 遅延時間を指定
+  });
 });

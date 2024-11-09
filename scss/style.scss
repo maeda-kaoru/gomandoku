@@ -1,7 +1,7 @@
 body {
   margin: 0 !important;
   overflow-x: hidden;
-  font-family: Montserrat, sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 p{
   font-size: 12px;
@@ -37,6 +37,10 @@ a{
   visibility: visible;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
 .section-title{
   display: flex;
   flex-direction: column;
@@ -46,18 +50,21 @@ a{
   margin: 97px 0 48px 0;
   p{
     line-height: 20px;
+    font-weight: 500;
   }
   h2{
     font-size: max(0.6875rem, clamp(1.25rem, 1.067rem + 0.78vw, 1.75rem));
-    line-height: 37px;
+    line-height: 39px;
     font-weight: 500;
     color: #1c1b1b;
+    letter-spacing: 0.2rem;
   }
   h1{
     font-size: max(0.6875rem, clamp(1.375rem, 1.15rem + 1vw, 2rem));
     line-height: 37px;
     font-weight: 500;
     color: #1c1b1b;
+    letter-spacing: 0.2rem;
   }
 }
 
@@ -77,13 +84,14 @@ a{
     font-size: 13px;
     line-height: 21px;
     white-space: nowrap;
-    opacity: 0.8;
   }
 }
 
 $max-dropdwon: 1399px;
+$max-BP-1: 1280px;
 $max-link: 1010px;
 $max-tablet: 999px;
+$max-BP-2: 769px;
 $max-mobile: 699px;
 $max-mobile-S: 482px;
 
@@ -100,6 +108,12 @@ $max-mobile-S: 482px;
   }
 }
 
+@mixin BP-2 {
+  @media only screen and (max-width: $max-BP-2) {
+    @content;
+  }
+}
+
 @mixin tablet {
   @media only screen and (max-width: $max-tablet) {
     @content;
@@ -108,6 +122,12 @@ $max-mobile-S: 482px;
 
 @mixin link {
   @media only screen and (max-width: $max-link) {
+    @content;
+  }
+}
+
+@mixin BP-1 {
+  @media only screen and (max-width: $max-BP-1) {
     @content;
   }
 }
@@ -142,7 +162,10 @@ $max-mobile-S: 482px;
       font-size: 11px;
       line-height: 18px;
       font-weight: 500;
-      opacity: 0.8;
+      letter-spacing: 0.11rem;
+      @include tablet {
+        font-size: 9px;
+      }
     }
   }
 
@@ -183,13 +206,14 @@ $max-mobile-S: 482px;
       transition: color 0.3s ease;
       margin: 0 68px 0 48px;
       @include tablet {
-        margin: 0 68px 0 32px;
+        margin: 3px 84px 0 32px;
         display: block;
         z-index: 1003;
-        @include mobile {
-          margin: 0 68px 0 20px;
-        }
       }
+      @include mobile {
+        margin: 3px 41px 0 20px;
+      }
+
       svg {
         color: white;
         transition: color 0.3s ease;
@@ -217,13 +241,13 @@ $max-mobile-S: 482px;
       @include tablet {
         position: fixed;
         top: 0;
-        left: -90%;
-        width: 90%;
+        left: -100%;
+        width: 100%;
         height: 100%;
-        max-width: 400px;
+        max-width: 395px;
         background-color: #fff;
         transition: left 0.3s ease;
-        z-index: 1003 !important; /* navが他の要素の上に来るようにz-indexを最も高く設定 */
+        z-index: 1003; /* navが他の要素の上に来るようにz-indexを最も高く設定 */
         display: flex;
         flex-direction: column;
         align-items: start;
@@ -232,38 +256,22 @@ $max-mobile-S: 482px;
         &.active {
           left: 0;
         }
+        &.no-scroll {
+          overflow: hidden;
+        }
       }
-    
       .close-button {
-        position: relative;
-        width: 2px;
-        height: 2px;
+        width: 36px;
+        height: 36px;
+        margin: 29px 0 18px 20px;
         cursor: pointer;
         display: none;
-    
-        &::before,
-        &::after {
-          content: '';
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 20px;
-          height: 1.5px;
-          background-color: #1c1c1c; // バツの色
-          transform-origin: center;
-        }
-    
-        &::before {
-          transform: translate(-50%, -50%) rotate(45deg); // バツの1本目の斜線
-        }
-    
-        &::after {
-          transform: translate(-50%, -50%) rotate(-45deg); // バツの2本目の斜線
-        }
         @include tablet {
           display: block;
           z-index: 1004;
-          margin: 40px 0 40px 28px;
+        }
+        svg{
+          margin: 1px 0;
         }
       }
     
@@ -281,7 +289,7 @@ $max-mobile-S: 482px;
           margin: 0 20px;
           z-index: 1005;
           gap: 0;
-          width: calc(100% - 40px);
+          width: calc(100% - 12px);
           height: 100vh;
         }
     
@@ -314,9 +322,10 @@ $max-mobile-S: 482px;
             @include mobile() {
               visibility: visible; // モバイル時に表示
               border-bottom: none;
-              margin: auto 0 20px 0;
+              margin-top: auto;
               justify-content: flex-start;
-              gap: 15px;
+              gap: 11px;
+              padding: 20px 0;
             }
           
             a{
@@ -349,7 +358,6 @@ $max-mobile-S: 482px;
             font-size: 12px;
             font-weight: 500;
             line-height: 20px;
-            opacity: 0.8;
             position: relative;
     
             @include tablet {
@@ -461,7 +469,6 @@ $max-mobile-S: 482px;
           .footer-contair3{
             animation: slideUp 0.8s ease forwards; /* アニメーション適用 */
           }
-    
           /* サブメニューのコンテンツ */
           .footer-contair1,
           .footer-contair2,
@@ -478,10 +485,12 @@ $max-mobile-S: 482px;
               list-style: none;
               .footer-nav-item{
                 margin-bottom: 14px;
+                font-family: "Nunito Sans", sans-serif;
                 a{
                   text-decoration: none;
                   font-size: 14px;
                   color: rgba(106, 106, 106, 0.65);
+                  font-family: "Nunito Sans", sans-serif;
                   &:hover {
                     color: #4B4B4B;
                   }
@@ -493,6 +502,10 @@ $max-mobile-S: 482px;
             display: none;
             @include mobile {
               display: block;
+            }
+            svg{
+              width: 20px;
+              height: 20px;
             }
           }
         }
@@ -540,14 +553,23 @@ $max-mobile-S: 482px;
       @include tablet {
         margin: 0 32px 0 0;
       }
+      @include mobile {
+        gap: 16px;
+        margin: 0 20px 0 0;
+      }
 
       svg {
         width: 24px;
         height: 24px;
         color: white;
         transition: color 0.3s ease;
+        @include mobile {
+          width: 22px;
+          height: 22px;
+        }
       }
       .accunt-iocn {
+        padding-top: 3px;
         @include mobile {
           display: none;
         }
@@ -558,11 +580,11 @@ $max-mobile-S: 482px;
       background-color: white;
 
       .nav-link {
-        color: black !important;
+        color: #1c1c1c !important;
       }
 
       svg {
-        color: black;
+        color: #1c1c1c;
       }
     }
   }
@@ -653,21 +675,6 @@ $max-mobile-S: 482px;
         100% {
           opacity: 1; /* 矢印が再び表示される */
           transform: translate(-50%, -50%) rotate(-45deg); /* 真ん中に戻る */
-        }
-      }
-
-      /* レスポンシブ対応: 画面幅1000px未満の場合 */
-      @media (max-width: 999px) {
-        .scroll {
-          width: 40px; /* ボタンサイズを小さく */
-          height: 40px;
-        }
-      }
-      /* レスポンシブ対応: 画面幅1920px以上の場合 */
-      @media (min-width: 1920px) {
-        .scroll {
-          width: 60px; /* ボタンサイズを大きく */
-          height: 60px;
         }
       }
         .swiper-slide {
@@ -835,7 +842,10 @@ $max-mobile-S: 482px;
   border-bottom: solid 1px #ccc;
   .button{
     @include tablet {
-      margin: 48px 0 60px;
+      margin: 44px 0 62px;
+    }
+    @include mobile {
+      margin: 46px 0 62px;
     }
   }
 }
@@ -850,8 +860,20 @@ $max-mobile-S: 482px;
       margin: 0 20px;
     }
     .section-title{
-      margin: 121px 0 48px 0;
+      margin: 120px 0 48px 0;
+      @include BP-2 {
+        margin: 84px 0 45px 0;
+      }
+      @include mobile {
+        gap: 14px;
+      }
+      h2{
+        @include mobile {
+          font-size: 19px;
+        }
+      }
     }
+    
 
 
 .swiper {
@@ -868,23 +890,27 @@ $max-mobile-S: 482px;
   opacity: 0; /* 初期状態は透明 */
   transform: translateY(50px); /* 下に50px移動した状態 */
   animation: slideUp 1s ease forwards; /* アニメーション適用 */
+  animation-play-state: paused;
 
         /* アニメーションをディレイして順番に表示 */
         &:nth-child(1) {
-          animation-delay: 0.2s;
+          animation-delay: 0s;
         }
         &:nth-child(2) {
-          animation-delay: 0.4s;
+          animation-delay: 0.1s;
         }
         &:nth-child(3) {
-          animation-delay: 0.6s;
+          animation-delay: 0.2s;
         }
         &:nth-child(4) {
-          animation-delay: 0.8s;
+          animation-delay: 0.3s;
         }
         &:nth-child(5) {
-          animation-delay: 1s;
+          animation-delay: 0.4s;
         }
+}
+.swiper-slide.show {
+  animation-play-state: running;
 }
 
 /* square-containerの表示アニメーション */
@@ -1274,12 +1300,27 @@ $max-mobile-S: 482px;
 .online-section {
   border-bottom: solid 1px #ccc;
   .container{
-  margin: 0 48px 96px 48px;
+  margin: 0 48px 94px 48px;
   @include tablet {
-    margin: 0 32px 96px 32px;
+    margin: 0 32px 59px 32px;
   }
   @include mobile {
-    margin: 0 20px 96px 20px;
+    margin: 0 20px 52px 20px;
+  }
+  .section-title{
+    @include tablet {
+    margin: 60px 0 48px 0;
+    gap: 14px;
+    }
+    @include mobile {
+      margin: 60px 0 43px 0;
+      gap: 12px;
+    }
+    h2{
+      @include mobile {
+        font-size: 19px;
+      }
+    }
   }
 
   .online-list {
@@ -1288,36 +1329,43 @@ $max-mobile-S: 482px;
     align-items: center;
     justify-content: space-between;
     gap: 30px;
-    @include tablet {
+    @include mobile {
       flex-direction: column;
+      gap: 20px;
     }
   }
 
   .online-item {
-    width: calc(50% - 15px);
-    height: 576px;
-    overflow: hidden; /* 親要素からはみ出た部分を隠す */
-    position: relative; /* 子要素の絶対位置を基準にする */
-    @include tablet {
-      width: 100%;
+    width: calc(50% - 15px); // 横幅の計算
+    aspect-ratio: 516 / 575; // 画像比率を維持（横516、高さ517）
+    height: 577px; // 最大高さを577pxに制限
+    overflow: hidden;
+    position: relative;
+  
+    @include mobile {
+      width: 100%; // モバイルでは幅を100%に
+      max-height: 577px;
+      height: auto;
+      padding-bottom: 5px;
     }
-
-    &:hover img{
-      transform: scale(1.15); // 1.1倍にズーム
+  
+    &:hover img {
+      transform: scale(1.15); // ホバーで1.15倍ズーム
     }
-    
+  
     img {
-      display: block; /* 画像をブロック要素に */
-      width: 100%; /* 親要素の幅に合わせる */
-      height: 100%; /* 親要素の高さに合わせる */
-      object-fit: cover; /* 画像を枠全体に表示 */
-      filter: brightness(0.7);
+      width: 100%;
+      height: 100%;
+      object-fit: cover; // 親要素の比率に合わせてカバー
       transition: transform 6s ease;
+      filter: brightness(0.7);
     }
+  
+  
 
     .online-text {
       position: absolute; /* 親要素の相対位置に基づいて配置 */
-      top: 57%; /* 親要素の中央（縦）に配置 */
+      top: 58.2%; /* 親要素の中央（縦）に配置 */
       left: 50%; /* 親要素の中央（横）に配置 */
       transform: translate(-50%, -50%); /* 自身の中央を基準に配置 */
       display: flex; /* テキストの配置を調整 */
@@ -1328,17 +1376,31 @@ $max-mobile-S: 482px;
       padding: 20px; /* テキストボックスの余白 */
       text-align: center; /* テキストを中央揃え */
       max-width: 80%; /* 必要に応じて幅を制限 */
+      @include mobile {
+        top: 60%; 
+      }
         p{
           color: #FCFCFC;
+          font-weight: 500;
+          line-height: 20px;
         }
         h3{
-          margin: 20px 0 24px;
+          margin: 23px 0 24px;
           font-size: 22px;
-          font-weight: normal;
+          font-weight: 500;
           white-space: nowrap;
+          letter-spacing: 0.1rem;
+          line-height: 32px;
+          @include tablet {
+            font-size: 20px;
+          }
+          @include mobile {
+            font-size: 18px;
+          }
         }
         .button{
           margin-top: 0;
+          line-height: 21px;
         }
     }
   }
@@ -1347,32 +1409,42 @@ $max-mobile-S: 482px;
 
 .news-section {
   margin: 0 48px;
+
   @include tablet {
     margin: 0;
   }
+
   .section-title{
     @include tablet {
-      margin: 61px 0 48px;
+    margin: 60px 0 48px 0;
+    gap: 16px;
     }
+    @include BP-2() {
+      margin: 60px 0 44px 0;
+      }
   }
 
   .news-list {
     display: flex;
     justify-content: center;
     gap: 60px;
-    overflow-x: auto; /* 横スクロールを可能に */
-    scroll-snap-type: x mandatory; /* スクロールスナップ */
-    -ms-overflow-style: none; /* IE/Edge用スクロールバー非表示 */
-    scrollbar-width: none; /* Firefox用スクロールバー非表示 */
+    overflow-x: auto; // 横スクロールを可能に
+    scroll-snap-type: x mandatory; // スクロールスナップ
+    -ms-overflow-style: none; // IE/Edge用スクロールバー非表示
+    scrollbar-width: none; // Firefox用スクロールバー非表示
+
     &::-webkit-scrollbar {
-      display: none; /* Chrome/Safari/Opera用スクロールバー非表示 */
+      display: none; // Chrome/Safari/Opera用スクロールバー非表示
     }
 
     @include tablet {
       padding: 0 32px;
-      gap: 18px;
-      white-space: nowrap;
-      justify-content: flex-start; /* 左揃え */
+      gap: 30px;
+      justify-content: flex-start; // 左揃え
+    }
+    @include mobile {
+      padding: 0;
+      gap: 20px;
     }
 
     .news-item {
@@ -1382,33 +1454,39 @@ $max-mobile-S: 482px;
       overflow: hidden;
       opacity: 0;
       transform: translateY(50px);
-      animation: slideUp 1s ease forwards;
       scroll-snap-align: start;
+      animation: slideUp 1s ease forwards; // アニメーション定義
+      animation-play-state: paused; // 初期状態でアニメーションを停止
+
+      &.show {
+        animation-play-state: running; // showクラスが追加されたらアニメーションを開始
+      }
+
       &:first-child {
         display: none;
         @include tablet {
           display: block;
-          width: 18px;
+          width: 5px;
           opacity: 0;
         }
         @include mobile {
           width: 2px;
         }
       }
+
       &:nth-child(2) {
         @include mobile {
           margin-left: 0;
         }
       }
 
-      
       @include tablet {
-        width: 46%;
+        width: 43%;
         flex-shrink: 0;
-        margin-left: 12px;
       }
+
       @include mobile {
-        width: 90%;
+        width: 74%;
         flex-shrink: 0;
       }
 
@@ -1416,13 +1494,13 @@ $max-mobile-S: 482px;
         animation-delay: 0s;
       }
       &:nth-child(2) {
-        animation-delay: 0.2s;
+        animation-delay: 0.1s;
       }
       &:nth-child(3) {
-        animation-delay: 0.4s;
+        animation-delay: 0.2s;
       }
       &:nth-child(4) {
-        animation-delay: 0.6s;
+        animation-delay: 0.3s;
       }
     }
 
@@ -1432,17 +1510,18 @@ $max-mobile-S: 482px;
       transition: transform 6s ease;
 
       &:hover {
-        transform: scale(1.1); /* ズーム効果 */
+        transform: scale(1.1); // ズーム効果
       }
     }
 
     .news-category {
       display: block;
-      margin: 20px 0 16px;
+      margin: 19px 0;
       text-align: start;
-      color: #4B4B4B;
+      color: #4b4b4b;
       text-decoration: none;
       font-size: 12px;
+      line-height: 20px;
 
       &:hover {
         color: #1c1b1b;
@@ -1450,20 +1529,32 @@ $max-mobile-S: 482px;
     }
 
     .news-title {
-      margin-bottom: 20px;
+      margin-bottom: 21px;
       text-align: start;
       font-size: 18px;
       font-weight: 500;
       letter-spacing: 2px;
-      @include mobile {
+      line-height: 28px;
+      @include BP-2() {
         font-size: 16px;
+        line-height: 28px;
+        margin-bottom: 16px;
+        }
+      @include mobile {
+        font-size: 15.5px;
+        line-height: 26px;
       }
     }
 
     .news-day {
       text-align: start;
       font-size: 14px;
-      font-family: Nutino Sans, sans-serif;
+      font-family: 'Nutino Sans', sans-serif;
+      line-height: 23px;
+      @include BP-2() {
+        letter-spacing: 0.7px;
+        }
+
       @include mobile {
         font-size: 12px;
       }
@@ -1471,13 +1562,15 @@ $max-mobile-S: 482px;
   }
 
   .button {
+    margin: 44px 0 96px;
+
     @include tablet {
-      margin: 48px 0 60px;
+      margin: 44px 0 62px;
     }
   }
 }
 
-/* 下からフェードインしながら上に移動するアニメーション */
+// 下からフェードインしながら上に移動するアニメーション
 @keyframes slideUp {
   0% {
     opacity: 0;
@@ -1501,6 +1594,12 @@ $max-mobile-S: 482px;
     align-items: center;
     .section-title{
         margin: 0 0 48px;
+        @include tablet {
+          margin: 0 0 40px;
+        }
+        @include mobile {
+          gap: 15px;
+        }
     }
 
     .journal-img-containar{
@@ -1529,39 +1628,73 @@ $max-mobile-S: 482px;
           width: 30%;
           height: auto;
           text-align: start;
+          opacity: 0;
+          transform: translateY(50px);
+          scroll-snap-align: start;
+          animation: slideUp 0.6s ease forwards; // アニメーション定義
+          animation-play-state: paused; // 初期状態でアニメーションを停止
+          animation-delay: 0.4s;
+    
+          &.show {
+            animation-play-state: running; // showクラスが追加されたらアニメーションを開始
+          }
           @include tablet {
             order: 2;
             margin-right: auto;
           }
 
           .journal-category {
-            margin: 20px 0;
+            margin: 11px 0 24px;
             font-size: 12px;
+            letter-spacing: 0.09rem;
+            @include tablet {
+              letter-spacing: 0.09rem;
+            }
+            @include mobile-S {
+              margin: 11px 0 20px;
+            }
           }
 
           .journal-title {
             font-size: 22px;
-            margin-bottom: 20px;
+            margin-bottom: 17px;
             white-space: nowrap;
             line-height: 1.6em;
+            letter-spacing: 0.15rem;
+            font-weight: 500;
+            @include tablet {
+              font-size: 20px;
+            }
+            @include BP-2() {
+              font-size: 19px;
+              }
             @include mobile-S {
-              font-size: 18px;
+              font-size: 17.5px;
+              margin-bottom: 16px;
             }
           }
 
           .journal-content {
             font-size: 14px;
             white-space: nowrap;
+            letter-spacing: 0.1rem;
+            line-height: 23px;
             @include mobile-S {
               font-size: 12px;
+              letter-spacing: 0.09rem;
             }
           }
 
           .button{
-            margin: 32px 0;
+            margin: 34px 0 62px;
             @include tablet {
               margin: 24px 0 40px;
             }
+            a{
+            @include mobile-S {
+              letter-spacing: 0.01rem;
+            }
+          }
           }
         }
 
@@ -1572,41 +1705,41 @@ $max-mobile-S: 482px;
           justify-content: end;
           align-items: center;
           position: relative;
-          padding: 50px 0;
+          margin: 21px 0 64px;
           @include tablet {
-            padding: 0 0 20px 0;
+            margin: 0 0 21px 0;
           }
           @include mobile-S {
             justify-content: start;
           }
 
           .journal-img1 {
-            width: 35%; /* 1つ目の画像の幅を設定 */
+            width: 36%; /* 1つ目の画像の幅を設定 */
             max-width: 394px; /* 最大幅を394pxに設定 */
             max-height: 477px; /* 最大高さを477pxに設定 */
             height: auto; /* 高さは自動調整 */
             object-fit: contain; /* 比率を保ちながら収める */
             z-index: 2;
             position: absolute;
-            top: 17%;
-            left: 27%;
+            top: 8%;
+            left: 26%;
             transform: translate(-50%, -50%);
             @include tablet {
               max-width: none;
               max-height: none;
-              width: 52%;
-              top: 17%;
-              left: -3%;
+              width: 48.5%;
+              top: 12.5%;
+              left: 0%;
             }
             @include mobile-S {
-              width: 52%;
-              top: 17%;
-              left: 48%;
+              width: 47.5%;
+              top: 18.5%;
+              left: 52.5%;
             }
           }
           
           .journal-img2 {
-            width: 44%; /* 2つ目の画像の幅を設定 */
+            width: 45%; /* 2つ目の画像の幅を設定 */
             max-width: 454px; /* 最大幅を454pxに設定 */
             max-height: 572px; /* 最大高さを572pxに設定 */
             height: auto; /* 高さは自動調整 */
@@ -1618,22 +1751,33 @@ $max-mobile-S: 482px;
               width: 61%;
             }
             @include mobile-S {
-              width: 82%;
+              width: 76%;
             }
           }
         }
       }
     }
   }
-
   /* 表示時のアニメーション */
   .journal-img-area {
-    .journal-img1 {
+    &.show .journal-img1 {
       animation: tiltRight 1s ease forwards;
+      opacity: 1;
+      transform: rotate(0deg);
     }
-    .journal-img2 {
+  
+    &.show .journal-img2 {
       animation: tiltLeft 1s ease forwards;
+      opacity: 1;
+      transform: rotate(0deg);
     }
+  /* 画像の初期状態 */
+  .journal-img1,
+  .journal-img2 {
+    opacity: 0;
+    transform: rotate(0deg);
+    animation-play-state: paused;
+  }
   }
 
   @keyframes tiltRight {
@@ -1641,7 +1785,7 @@ $max-mobile-S: 482px;
       transform: rotate(0deg);
     }
     100% {
-      transform: rotate(8deg);
+      transform: rotate(11deg);
     }
   }
 
@@ -1650,7 +1794,7 @@ $max-mobile-S: 482px;
       transform: rotate(0deg);
     }
     100% {
-      transform: rotate(-8deg);
+      transform: rotate(-6deg);
     }
   }
 
@@ -1659,6 +1803,9 @@ $max-mobile-S: 482px;
     width: 100%;
     aspect-ratio: 478 / 625;
     max-height: 672px;
+    @include mobile {
+
+    }
 
     .video {
       width: 100%;
@@ -1679,13 +1826,20 @@ $max-mobile-S: 482px;
       .film-title,
       .tagline {
         margin: 0;
+      }
+      .film-by{
         font-size: 12px;
+        letter-spacing: 0.8px;
+        line-height: 20px;
+        font-weight: 500;
       }
 
       .film-title {
         font-size: 21px;
-        margin: 20px 0;
+        margin: 25px 0;
         letter-spacing: 2px;
+        line-height: 32px;
+        font-weight: 500;
         @include mobile {
           font-size: 16px;
         }
@@ -1694,6 +1848,8 @@ $max-mobile-S: 482px;
       .tagline {
         white-space: nowrap;
         font-size: 14px;
+        letter-spacing: 0.8px;
+        line-height: 23px;
         @include mobile {
           font-size: 12px;
         }
@@ -1706,16 +1862,30 @@ $max-mobile-S: 482px;
 
 .instagram-section {
   .section-title{
-    margin: 40px 0;
+    margin: 67px 0;
     h2{
       font-size: 28px;
     }
-  }
+    @include tablet {
+      margin: 40px 0 46px 0;
+      gap: 16px;
+      }
+    @include BP-2 {
+      margin: 40px 0 40px 0;
+      }
+    }
+    @include BP-2 {
+      margin: 40px 0 10px 0;
+      }
+
   .instagram-gallery {
     display: flex;
     flex-wrap: wrap;
     gap: 3px; /* 各投稿間のスペース */
     justify-content: center; /* 子要素を中央揃え */
+    @include mobile {
+      gap: 2px;
+    }
   }
 
   .instagram-post {
@@ -1725,24 +1895,18 @@ $max-mobile-S: 482px;
     transition: transform 0.3s ease;
     background-color: #f0f0f0; /* 画像が小さくても目立たないように背景色を設定 */
     @include mobile {
-      width: calc((100% - 5 * 3px) / 3);
+      width: calc((100% - 2 * 2px) / 3);
     }
 
     @include mobile-S {
-      width: calc((100% - 5 * 3px) / 2);
+      width: calc((100% - 2 * 2px) / 2);
     }
 
     .instagram-img {
       width: 100%;
-      height: 251px; /* 全ての画像を同じ高さに */
+      aspect-ratio: 1 / 1; // 正方形を維持する
       position: relative;
       overflow: hidden;
-      @include mobile {
-        height: 218px;
-      }
-      @include mobile-S {
-        height: 199px;
-      }
 
       img {
         width: 100%;
@@ -1773,10 +1937,10 @@ $max-mobile-S: 482px;
 }
 
 .site-footer{
-  margin: 96px 48px 0;
+  margin: 98px 48px 0;
   white-space: nowrap;
   @include tablet {
-    margin: 62px 36px 0;
+    margin: 62px 32px 0;
   }
   @include mobile {
     margin: 0 20px;
@@ -1787,14 +1951,21 @@ $max-mobile-S: 482px;
       justify-content: space-between;
       flex-wrap: wrap;
       width: 100%;
-      margin-bottom: 65px;
+      margin-bottom: 47px;
       @include tablet {
-        gap: 48px;
-        margin-bottom: 48px;
+        gap: 46.5px;
+        margin-bottom: 52px;
+      }
+      @include BP-2 {
+        gap: 45px;
+        margin-bottom: 56px;
       }
       @include mobile {
         flex-direction: column;
         gap: 40px;
+      }
+      @include mobile-S {
+        margin-bottom: 45px;
       }
       .company{
         flex: 1;
@@ -1808,17 +1979,34 @@ $max-mobile-S: 482px;
           line-height: 20px;
           margin-bottom: 20px;
           color: rgba(106, 106, 106,);
+          letter-spacing: 0.08rem;
+          font-weight: 500;
+          @include tablet {
+            letter-spacing: 0.075rem;
+            }
           @include mobile {
             margin: 60px 0 20px 0;
+          }
+          @include mobile-S {
+            margin: 52px 0 14px 0;
           }
         }
   
         .company-data p{
           font-size: 14px;
           color: rgba(106, 106, 106, 0.65);
-          line-height: 20px;
+          line-height: 23px;
+          letter-spacing: 0.08rem;
+          font-family: "Nunito Sans", sans-serif;
+          @include tablet {
+            letter-spacing: 0.065rem;
+            line-height: 22px;
+            }
           @include mobile {
             font-size: 12px;
+          }
+          @include mobile-S {
+            line-height: 20px;
           }
         }
       }
@@ -1836,11 +2024,23 @@ $max-mobile-S: 482px;
         .footer-title p{
           font-family: Montserrat,sans-serif;
           font-size: 12px;
-          line-height: 20px;
-          margin-bottom: 20px;
+          line-height: 21px;
+          margin-bottom: 22px;
+          letter-spacing: 0.08rem;
           color: rgba(106, 106, 106,);
+          font-weight: 500;
+          @include tablet {
+            margin-bottom: 21px;
+            }
+            @include BP-2 {
+              line-height: 26px;
+              margin-bottom: 19px;
+              }
           @include mobile {
             margin-bottom: 1rem;
+          }
+          @include mobile-S {
+            margin-bottom: 10px;
           }
         }
         .footer-nav{
@@ -1848,14 +2048,21 @@ $max-mobile-S: 482px;
           .footer-nav-item{
             line-height: 18.8px;
             margin-bottom: 14px;
+            letter-spacing: 0.08rem;
+            font-family: "Nunito Sans", sans-serif;
             @include tablet {
               margin-bottom: 10px;
               line-height: 22px;
+            }
+            @include mobile-S {
+              margin-bottom: 6.5px;
             }
             a{
               text-decoration: none;
               font-size: 14px;
               color: rgba(106, 106, 106, 0.65);
+              font-family: "Nunito Sans", sans-serif;
+              line-height: 23px;
               @include mobile {
                 font-size: 12px;
               }
@@ -1871,20 +2078,42 @@ $max-mobile-S: 482px;
         }
       }
     }
-  
+  .icon-area{
+    @include tablet {
+      display: flex;
+      align-items: flex-end; /* 下方向に寄せる */
+      }
+  }
   .icon-area svg{
     margin-right: 28px;
     color: rgba(106, 106, 106, 0.65);
     width: 20px;
     height: 20px;
+    @include tablet {
+      margin-right: 30px;
+      }
+      &:hover {
+        color: rgba(106, 106, 106,);
+      }
   }
   .footer-text p{
-    margin: 48px 0;
+    margin: 43px 0 48px;
     color: rgba(106, 106, 106, 0.65);
-    line-height: 18px;
+    line-height: 23px;
+    letter-spacing: 0.09rem;
+    font-size: 14px;
+    text-indent: 0.6em;
+    font-family: "Nunito Sans", sans-serif;
     @include tablet {
-      font-size: 11px;
+      margin: 47px 0 48px;
+      }
+    @include BP-2 {
+      margin: 45px 0 48px;
+      }
+    @include tablet {
       text-align: center;
+    }@include mobile-S {
+      letter-spacing: 0.07rem;
     }
   }
 }
