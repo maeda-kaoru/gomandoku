@@ -41,6 +41,24 @@ a{
   overflow: hidden;
 }
 
+.fade-out {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.show {
+  display: flex;
+  display: block;
+  flex-direction: column;
+}
+
 .section-title{
   display: flex;
   flex-direction: column;
@@ -241,13 +259,14 @@ $max-mobile-S: 482px;
       @include tablet {
         position: fixed;
         top: 0;
+
         left: -100%;
         width: 100%;
         height: 100%;
         max-width: 395px;
         background-color: #fff;
         transition: left 0.3s ease;
-        z-index: 1003; /* navが他の要素の上に来るようにz-indexを最も高く設定 */
+        z-index: 1003;
         display: flex;
         flex-direction: column;
         align-items: start;
@@ -325,7 +344,7 @@ $max-mobile-S: 482px;
               margin-top: auto;
               justify-content: flex-start;
               gap: 11px;
-              padding: 20px 0;
+              padding: 17px 0;
             }
           
             a{
@@ -341,12 +360,16 @@ $max-mobile-S: 482px;
               }
             }
           }
+          &.fade-out {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+          }
           
-          .rigth-svg-icon{
+          .right-svg-icon{
             display: none;
             @include mobile {
               display: block;
-              margin: 0 0 0 auto;
             }
           }
     
@@ -428,6 +451,12 @@ $max-mobile-S: 482px;
             }
           }
 
+          .online-click{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+          }
+
           /* 初期状態ではサブメニューを非表示にする */
           .dropdown {
             display: none;
@@ -444,20 +473,26 @@ $max-mobile-S: 482px;
               top: 104px;
               left: -390%;
             }
-          }
-          
-          &:hover .dropdown {
-            display: block;
-            display: flex;
-            justify-content: center;
-            gap: 110px;
-            @include dropdown{
-              gap: 2.5rem;
+            @include tablet {
+              top: -100px;
+              left: 0%;
+              right: 0; /* 左右に広げる */
+              background-color: white;
+              padding: 20px;
+              z-index: 1010;
+              width: 80%;
+              margin-left: 20px;
             }
           }
-          .dropdown:hover {
+          
+
+          /* .show クラスが付与された場合に表示する */
+          &.show {
             display: flex;
+            display: block;
+            flex-direction: column;
           }
+
           .footer-contair1{
             animation: slideUp 0.4s ease forwards; /* アニメーション適用 */
           }
@@ -469,35 +504,86 @@ $max-mobile-S: 482px;
           .footer-contair3{
             animation: slideUp 0.8s ease forwards; /* アニメーション適用 */
           }
-          /* サブメニューのコンテンツ */
-          .footer-contair1,
-          .footer-contair2,
-          .footer-contair3{
-            opacity: 0; /* 初期状態は透明 */
-            transform: translateY(50px); /* 下に50px移動した状態 */
-            .footer-title p{
-              font-family: Montserrat,sans-serif;
-              font-size: 12px;
-              margin-bottom: 20px;
-              color: rgba(106, 106, 106,);
+
+        .mobile-online-click,
+        .footer-contair1,
+        .footer-contair2,
+        .footer-contair3 {
+          opacity: 0; // 初期状態は透明
+          transform: translateY(50px); // 初期状態は下に50px移動
+          transition: opacity 0.3s ease, transform 0.3s ease;
+        
+          // フェードイン効果
+          &.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        
+          // メディアクエリ内でのスタイル
+          @include tablet {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+          }
+        
+          .click-nav-link {
+            font-family: Montserrat, sans-serif;
+            font-size: 12px;
+            margin-bottom: 20px;
+            color: rgba(106, 106, 106, 0.65);
+          }
+        
+          .footer-title p {
+            font-family: Montserrat, sans-serif;
+            font-size: 12px;
+            margin-bottom: 20px;
+            color: rgba(106, 106, 106, 0.65);
+          }
+        
+          .toggle-button {
+            display: none;
+            @include tablet {
+              display: block;
             }
-            .footer-nav{
-              list-style: none;
-              .footer-nav-item{
-                margin-bottom: 14px;
+          }
+        
+          // アクティブ時のトグルボタンのスタイル
+          .toggle-button.active::after {
+            content: "-";
+          }
+        
+          .footer-nav {
+            list-style: none;
+        
+            .footer-nav-item {
+              margin-bottom: 14px;
+              font-family: "Nunito Sans", sans-serif;
+        
+              @include tablet {
+                // 初期状態で非表示
+                display: none;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+        
+                &.active {
+                  display: block;
+                  opacity: 1;
+                  transition: opacity 0.3s ease;
+                }
+              }
+        
+              a {
+                text-decoration: none;
+                font-size: 14px;
+                color: rgba(106, 106, 106, 0.65);
                 font-family: "Nunito Sans", sans-serif;
-                a{
-                  text-decoration: none;
-                  font-size: 14px;
-                  color: rgba(106, 106, 106, 0.65);
-                  font-family: "Nunito Sans", sans-serif;
-                  &:hover {
-                    color: #4B4B4B;
-                  }
+                &:hover {
+                  color: #4B4B4B;
                 }
               }
             }
           }
+        }
+        
+
           .accunt-iocn{
             display: none;
             @include mobile {
@@ -510,38 +596,172 @@ $max-mobile-S: 482px;
           }
         }
         // 追加したクラスを利用してアニメーション適用
-  .nav-item.animate {
-    opacity: 1;
-    transform: translateY(0); /* 元の位置に戻す */
-    transition: opacity 0.5s ease, transform 0.5s ease;
+        .nav-item.animate {
+          opacity: 1;
+          transform: translateY(0); /* 元の位置に戻す */
+          transition: opacity 0.05s ease, transform 0.5s ease;
 
-    &:nth-child(1) {
-      animation-delay: 0.05s;
+          &:nth-child(1) {
+            animation-delay: 0.05s;
+          }
+          &:nth-child(2) {
+            animation-delay: 0.1s;
+          }
+          &:nth-child(3) {
+            animation-delay: 0.15s;
+          }
+          &:nth-child(4) {
+            animation-delay: 0.2s;
+          }
+          &:nth-child(5) {
+            animation-delay: 0.25s;
+          }
+          &:nth-child(6) {
+            animation-delay: 0.3s;
+          }
+          &:nth-child(7) {
+            animation-delay: 0.35s;
+          }
+          &:nth-child(8) {
+            animation-delay: 0.4s;
+          }
+        }
+      }
     }
-    &:nth-child(2) {
-      animation-delay: 0.1s;
+
+    .mobile-nav{
+      display: none;
+      background: white;
+      position: absolute;
+      z-index: 1020;
+      width: 92.5%;
+      top: 40px;
+      list-style: none;
+      padding: 0 20px 20px;
+      &.fade-in {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+      &.show {
+        display: block; /* show クラスが付いているときに表示 */
+      }
+
+      .mobile-online-click,
+      .footer-contair1,
+      .footer-contair2,
+      .footer-contair3 {
+        opacity: 0; // 初期状態は透明
+        transform: translateY(50px); // 初期状態は下に50px移動
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        border-bottom: 1px solid #ddd;
+      
+        // フェードイン効果
+        &.fade-in {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      
+        // メディアクエリ内でのスタイル
+        @include tablet {
+          transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+      }
+      .mobile-online-click{
+        display: flex;
+        padding: 16px 0;
+        margin-bottom: 9px;
+        .left-svg-icon svg{
+          color: rgba(106, 106, 106, 0.65) !important;
+        }
+        .click-nav-link {
+          text-decoration: none;
+          font-size: 12px;
+          color: rgba(106, 106, 106, 0.65);
+          font-family: Montserrat, sans-serif;
+          margin-left: 8px;
+          font-weight: 500;
+          line-height: 20px;
+          letter-spacing: 0.1rem;
+          &:hover {
+            color: #4B4B4B;
+          }
+        }
+      }
+      .footer-contair1,
+      .footer-contair2,
+      .footer-contair3{
+        width: 100%;
+        padding: 16px 0;
+        .footer-title{
+          display: flex;
+            p {
+            font-family: Montserrat, sans-serif;
+            font-size: 12px;
+            color: black;
+            font-weight: 500;
+            line-height: 20px;
+          }
+        }
+        .toggle-button {
+          display: none;
+          margin-left: auto;
+          @include tablet {
+            display: block;
+          }
+        }
+      
+        // アクティブ時のトグルボタンのスタイル
+        .toggle-button.active::after {
+          content: "-";
+        }
+      
+        .footer-nav {
+          list-style: none;
+      
+          .footer-nav-item {
+            margin-bottom: 14px;
+            font-family: "Nunito Sans", sans-serif;
+      
+            @include tablet {
+              // 初期状態で非表示
+              display: none;
+              opacity: 0;
+              transition: opacity 0.3s ease;
+      
+              &.active {
+                display: block;
+                opacity: 1;
+                transition: opacity 0.3s ease;
+              }
+            }
+      
+            a {
+              text-decoration: none;
+              font-size: 14px;
+              color: rgba(106, 106, 106, 0.65);
+              font-family: "Nunito Sans", sans-serif;
+              &:hover {
+                color: #4B4B4B;
+              }
+            }
+          }
+        }
+      }
+
+      .mobile-online-click{
+        animation: slideUp 0.6s ease forwards;
+      }
+      .footer-contair1{
+        animation: slideUp 0.8s ease forwards;
+      }
+      .footer-contair2{
+        animation: slideUp 1s ease forwards;
+      }
+      .footer-contair3{
+        animation: slideUp 1.2s ease forwards;
+      }
     }
-    &:nth-child(3) {
-      animation-delay: 0.15s;
-    }
-    &:nth-child(4) {
-      animation-delay: 0.2s;
-    }
-    &:nth-child(5) {
-      animation-delay: 0.25s;
-    }
-    &:nth-child(6) {
-      animation-delay: 0.3s;
-    }
-    &:nth-child(7) {
-      animation-delay: 0.35s;
-    }
-    &:nth-child(8) {
-      animation-delay: 0.4s;
-    }
-  }
-  }
-  }
 
     .icon {
       display: flex;

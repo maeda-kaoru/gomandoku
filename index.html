@@ -39,23 +39,33 @@
           </div>
           <!-- ナビゲーションメニュー -->
           <nav class="site-nav" id="nav">
-              <div class="close-button" id="closeButton">
-                <svg aria-hidden="true" focusable="false" fill="none" width="16" class="icon icon-close" viewBox="0 0 16 16">
-                  <path d="m1 1 14 14M1 15 15 1" stroke="currentColor" stroke-width="1.5"></path>
-                </svg>
-              </div>
+            <div class="close-button" id="closeButton">
+              <svg aria-hidden="true" focusable="false" fill="none" width="16" class="icon icon-close" viewBox="0 0 16 16">
+                <path d="m1 1 14 14M1 15 15 1" stroke="currentColor" stroke-width="1.5"></path>
+              </svg>
+            </div>
             <ul class="nav-list">
-              <li class="nav-item" id="item"><a href="#home" class="nav-link">HOME</a></li>
-              <li class="nav-item" id="item"><a href="#about us" class="nav-link">ABOUT US</a></li>
-              <li class="nav-item" id="item">
-                <a href="#online store" class="nav-link">ONLINE STORE</a>
-                <div class="rigth-svg-icon" >
-                  <svg aria-hidden="true" focusable="false" fill="none" width="12" viewBox="0 0 10 10">
-                    <path d="m3 9 4-4-4-4" stroke="currentColor" stroke-linecap="square"></path>
-                  </svg>
+              <li class="nav-item" id="home-item"><a href="#home" class="nav-link">HOME</a></li>
+              <li class="nav-item" id="about-item"><a href="#about-us" class="nav-link">ABOUT US</a></li>
+              <li class="nav-item" id="store-item">
+                <div class="online-click" id="online-click">
+                  <a href="#online-store" class="nav-link">ONLINE STORE</a>
+                  <div class="right-svg-icon">
+                    <svg aria-hidden="true" focusable="false" fill="none" width="12" viewBox="0 0 10 10">
+                      <path d="m3 9 4-4-4-4" stroke="currentColor" stroke-linecap="square"></path>
+                    </svg>
+                  </div>
                 </div>
                 <!-- サブメニュー -->
                 <div class="dropdown">
+                  <div class="mobile-online-click">
+                    <div class="left-svg-icon">
+                      <svg aria-hidden="true" focusable="false" fill="none" width="12" viewBox="0 0 10 10">
+                        <path d="m3 9 4-4-4-4" stroke="currentColor" stroke-linecap="square"></path>
+                      </svg>
+                    </div>
+                    <a href="#online-store" class="click-nav-link">ONLINE STORE</a>
+                  </div>
                   <div class="footer-contair1">
                     <div class="footer-title">
                       <p>FURNITURE</p>
@@ -91,19 +101,71 @@
                       <li class="footer-nav-item"><a href="#">KIHON NO UTUWA</a></li>
                     </ul>
                   </div>
+                </div>
               </li>
-              <li class="nav-item" id="item"><a href="#news" class="nav-link">NEWS</a></li>
-              <li class="nav-item" id="item"><a href="#media" class="nav-link">MEDIA</a></li>
-              <li class="nav-item" id="item"><a href="#journal" class="nav-link">JOURNAL</a></li>
-              <li class="nav-item" id="item"><a href="#contact" class="nav-link" id="last-link">CONTACT</a></li>
-              <li class="nav-item" class="accunt-iocn" id="item">
+              <li class="nav-item" id="news-item"><a href="#news" class="nav-link">NEWS</a></li>
+              <li class="nav-item" id="media-item"><a href="#media" class="nav-link">MEDIA</a></li>
+              <li class="nav-item" id="journal-item"><a href="#journal" class="nav-link">JOURNAL</a></li>
+              <li class="nav-item" id="contact-item"><a href="#contact" class="nav-link" id="last-link">CONTACT</a></li>
+              <li class="nav-item fade-item accunt-iocn" id="account-item">
                 <svg aria-hidden="true" fill="none" focusable="false" width="20" viewBox="0 0 24 24">
-                <path d="M16.125 8.75c-.184 2.478-2.063 4.5-4.125 4.5s-3.944-2.021-4.125-4.5c-.187-2.578 1.64-4.5 4.125-4.5 2.484 0 4.313 1.969 4.125 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M3.017 20.747C3.783 16.5 7.922 14.25 12 14.25s8.217 2.25 8.984 6.497" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></path>
-              </svg>
-              <a href="#cart" class="nav-link">アカウント</a></li>
+                  <path d="M16.125 8.75c-.184 2.478-2.063 4.5-4.125 4.5s-3.944-2.021-4.125-4.5c-.187-2.578 1.64-4.5 4.125-4.5 2.484 0 4.313 1.969 4.125 4.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M3.017 20.747C3.783 16.5 7.922 14.25 12 14.25s8.217 2.25 8.984 6.497" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></path>
+                </svg>
+                <a href="#cart" class="nav-link">アカウント</a>
+              </li>
             </ul>
           </nav>
+
+          <div class="mobile-nav">
+            <div class="mobile-online-click">
+              <div class="left-svg-icon">
+                <svg aria-hidden="true" focusable="false" fill="none" width="12" viewBox="0 0 10 10" style="transform: scaleX(-1);">
+                  <path d="m3 9 4-4-4-4" stroke="currentColor" stroke-linecap="square"></path>
+                </svg>
+              </div>
+              <a href="#online-store" class="click-nav-link">ONLINE STORE</a>
+            </div>
+            <div class="footer-contair1">
+              <div class="footer-title">
+                <p>FURNITURE</p>
+                <span class="toggle-button">+</span>
+              </div>
+              <ul class="footer-nav">
+                <li class="footer-nav-item"><a href="#">SOFA</a></li>
+                <li class="footer-nav-item"><a href="#">CHAIR</a></li>
+                <li class="footer-nav-item"><a href="#">DINING TABLE</a></li>
+                <li class="footer-nav-item"><a href="#">LIVING / SIDE TABLE</a></li>
+                <li class="footer-nav-item"><a href="#">TV BOARD</a></li>
+                <li class="footer-nav-item"><a href="#">STORAGE</a></li>
+                <li class="footer-nav-item"><a href="#">OTHER</a></li>
+              </ul>
+            </div>
+            <div class="footer-contair2">
+              <div class="footer-title">
+                <p>INTERIOR</p>
+                <span class="toggle-button">+</span>
+              </div>
+              <ul class="footer-nav">
+                <li class="footer-nav-item"><a href="#">LIGHTING</a></li>
+                <li class="footer-nav-item"><a href="#">FABRIC</a></li>
+                <li class="footer-nav-item"><a href="#">ROOM SPEAKER</a></li>
+                <li class="footer-nav-item"><a href="#">INTERIOR</a></li>
+                <li class="footer-nav-item"><a href="#">TABLEWARE</a></li>
+                <li class="footer-nav-item"><a href="#">ART</a></li>
+              </ul>
+            </div>
+            <div class="footer-contair3">
+              <div class="footer-title">
+                <p>POP UP COLLECTION</p>
+                <span class="toggle-button">+</span>
+              </div>
+              <ul class="footer-nav">
+                <li class="footer-nav-item"><a href="#">KIHON NO UTUWA</a></li>
+              </ul>
+            </div>
+          </div>
+
           <div class="icon">
             <div class="accunt-iocn">
               <svg aria-hidden="true" fill="none" focusable="false" width="24" viewBox="0 0 24 24">

@@ -9,15 +9,6 @@ document.addEventListener("scroll", function () {
   }
 });
 
-$(function () {
-  $(".menuButton").on("click", function () {
-    $(this).toggleClass("active");
-    $("#nav").toggleClass("active");
-    $("#mask").toggleClass("active");
-    $("#item").toggleClass("active");
-  });
-});
-
 document.querySelector(".hamburger").addEventListener("click", function () {
   const nav = document.querySelector(".site-nav");
   const mask = document.getElementById("mask");
@@ -62,6 +53,129 @@ document.getElementById("mask").addEventListener("click", function () {
 
   // bodyからno-scrollクラスを削除
   document.body.classList.remove("no-scroll");
+});
+// ハンバーガーメニューをクリックしたときの処理
+document.querySelector(".hamburger").addEventListener("click", function () {
+  const navItems = document.querySelectorAll(".nav-item");
+
+  // クラスをリセットしてから、フェードインアニメーションを追加
+  navItems.forEach((item, index) => {
+    item.classList.remove("fade-out"); // フェードアウトクラスを削除
+    // フェードインアニメーションを設定するための遅延
+    setTimeout(() => {
+      item.classList.add("animate");
+    }, index * 100);
+  });
+});
+
+// "ONLINE STORE" をクリックしたときの処理
+document
+  .getElementById("online-click")
+  .addEventListener("click", function (event) {
+    event.stopPropagation(); // クリックイベントが他の要素に伝わらないようにする
+
+    const navItems = document.querySelectorAll(".nav-item");
+    const dropdown = document.querySelector(".dropdown");
+    const mobileNav = document.querySelector(".mobile-nav");
+
+    // フェードアウトクラスを追加して、アニメーションクラスを削除
+    navItems.forEach((item) => {
+      item.classList.remove("animate"); // フェードイン用のクラスを削除
+      item.classList.add("fade-out"); // フェードアウトクラスを追加
+    });
+
+    // サブメニューと mobile-nav の表示を切り替える
+    setTimeout(() => {
+      if (dropdown.classList.contains("show")) {
+        dropdown.classList.remove("show");
+        mobileNav.style.display = "none"; // mobile-nav を隠す
+      } else {
+        dropdown.classList.add("show");
+        mobileNav.style.display = "block"; // mobile-nav を表示
+      }
+    }, 300); // フェードアウトのトランジションに合わせてタイミングを調整
+  });
+
+// バツボタンをクリックしたときの処理
+document.getElementById("closeButton").addEventListener("click", function () {
+  const nav = document.querySelector(".site-nav");
+  const mask = document.getElementById("mask");
+  const navItems = document.querySelectorAll(".nav-item");
+  const mobileNav = document.querySelector(".mobile-nav");
+
+  // メニューとマスクを非表示にする
+  nav.classList.remove("active");
+  mask.classList.remove("active");
+  mobileNav.classList.remove("show"); // mobile-nav を非表示にする
+  mobileNav.style.display = "none"; // 明示的に display: none に設定
+
+  document.body.classList.remove("no-scroll");
+
+  // すべてのアイテムのクラスをリセット
+  navItems.forEach((item) => {
+    item.classList.remove("fade-out"); // フェードアウトクラスを削除
+    item.classList.remove("animate"); // フェードイン用のクラスを削除
+  });
+});
+// "ONLINE STORE" をクリックしたときの処理
+document
+  .getElementById("online-click")
+  .addEventListener("click", function (event) {
+    event.stopPropagation(); // クリックイベントが他の要素に伝わらないようにする
+
+    const dropdown = document.querySelector(".dropdown");
+    const mobileNav = document.querySelector(".mobile-nav");
+
+    // クラスをトグルして表示/非表示を切り替える
+    if (dropdown.classList.contains("show")) {
+      dropdown.classList.remove("show");
+      mobileNav.classList.remove("show"); // mobile-nav を非表示にする
+    } else {
+      dropdown.classList.add("show");
+      mobileNav.classList.add("show"); // mobile-nav を表示する
+    }
+  });
+
+// ドキュメントのどこかをクリックしたときに .dropdown を非表示にする処理
+document.addEventListener("click", function () {
+  const dropdown = document.querySelector(".dropdown");
+  dropdown.classList.remove("show");
+});
+
+// .dropdown 内をクリックしても消えないようにする
+document.querySelector(".dropdown").addEventListener("click", function (event) {
+  event.stopPropagation(); // クリックイベントの伝播を停止
+});
+document
+  .getElementById("online-click")
+  .addEventListener("click", function (event) {
+    event.stopPropagation(); // クリックイベントが他の要素に伝わらないようにする
+
+    const dropdown = document.querySelector(".dropdown");
+    const mobileNav = document.querySelector(".mobile-nav");
+
+    // サブメニューがすでに表示されているか確認
+    if (dropdown.classList.contains("show")) {
+      dropdown.classList.remove("show"); // サブメニューを隠す
+      mobileNav.style.display = "none"; // mobile-navも隠す
+    } else {
+      dropdown.classList.add("show"); // サブメニューを表示
+      mobileNav.style.display = "block"; // mobile-navを表示
+    }
+  });
+
+// ドキュメントのどこかをクリックしたときに .dropdown と .mobile-nav を非表示にする処理
+document.addEventListener("click", function () {
+  const dropdown = document.querySelector(".dropdown");
+  const mobileNav = document.querySelector(".mobile-nav");
+
+  dropdown.classList.remove("show");
+  mobileNav.classList.remove("show"); // mobile-nav を非表示にする
+});
+
+// .dropdown 内をクリックしてもイベントが伝播しないようにする
+document.querySelector(".dropdown").addEventListener("click", function (event) {
+  event.stopPropagation();
 });
 
 function adjustGap() {
