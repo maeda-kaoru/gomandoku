@@ -2,6 +2,7 @@ body {
   margin: 0 !important;
   overflow-x: hidden;
   font-family: 'Montserrat', sans-serif;
+  scroll-behavior: smooth; /* スムーズスクロールを有効化 */
 }
 p{
   font-size: 12px;
@@ -59,6 +60,17 @@ a{
   flex-direction: column;
 }
 
+.fade-out-right {
+  opacity: 1; /* 初期状態で表示 */
+  transform: translateX(0); /* 元の位置 */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* アニメーション */
+
+  &.hide {
+    opacity: 0; /* 透明にする */
+    transform: translateX(30px); /* 右に移動 */
+  }
+}
+
 .section-title{
   display: flex;
   flex-direction: column;
@@ -72,7 +84,7 @@ a{
   }
   h2{
     font-size: max(0.6875rem, clamp(1.25rem, 1.067rem + 0.78vw, 1.75rem));
-    line-height: 39px;
+    line-height: 38px;
     font-weight: 500;
     color: #1c1b1b;
     letter-spacing: 0.2rem;
@@ -206,10 +218,10 @@ $max-mobile-S: 482px;
       background-color: white;
       transition: background-color 0.3s ease;
       .nav-link {
-        color: black !important;
+        color: #1c1c1c !important;
       }
       svg {
-        color: black !important;
+        color: #1c1c1c !important;
       }
     }
 
@@ -485,105 +497,6 @@ $max-mobile-S: 482px;
             }
           }
           
-
-          /* .show クラスが付与された場合に表示する */
-          &.show {
-            display: flex;
-            display: block;
-            flex-direction: column;
-          }
-
-          .footer-contair1{
-            animation: slideUp 0.4s ease forwards; /* アニメーション適用 */
-          }
-
-          .footer-contair2{
-            animation: slideUp 0.6s ease forwards; /* アニメーション適用 */
-          }
-
-          .footer-contair3{
-            animation: slideUp 0.8s ease forwards; /* アニメーション適用 */
-          }
-
-        .mobile-online-click,
-        .footer-contair1,
-        .footer-contair2,
-        .footer-contair3 {
-          opacity: 0; // 初期状態は透明
-          transform: translateY(50px); // 初期状態は下に50px移動
-          transition: opacity 0.3s ease, transform 0.3s ease;
-        
-          // フェードイン効果
-          &.fade-in {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        
-          // メディアクエリ内でのスタイル
-          @include tablet {
-            transition: opacity 0.3s ease, transform 0.3s ease;
-          }
-        
-          .click-nav-link {
-            font-family: Montserrat, sans-serif;
-            font-size: 12px;
-            margin-bottom: 20px;
-            color: rgba(106, 106, 106, 0.65);
-          }
-        
-          .footer-title p {
-            font-family: Montserrat, sans-serif;
-            font-size: 12px;
-            margin-bottom: 20px;
-            color: rgba(106, 106, 106, 0.65);
-          }
-        
-          .toggle-button {
-            display: none;
-            @include tablet {
-              display: block;
-            }
-          }
-        
-          // アクティブ時のトグルボタンのスタイル
-          .toggle-button.active::after {
-            content: "-";
-          }
-        
-          .footer-nav {
-            list-style: none;
-        
-            .footer-nav-item {
-              margin-bottom: 14px;
-              font-family: "Nunito Sans", sans-serif;
-        
-              @include tablet {
-                // 初期状態で非表示
-                display: none;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-        
-                &.active {
-                  display: block;
-                  opacity: 1;
-                  transition: opacity 0.3s ease;
-                }
-              }
-        
-              a {
-                text-decoration: none;
-                font-size: 14px;
-                color: rgba(106, 106, 106, 0.65);
-                font-family: "Nunito Sans", sans-serif;
-                &:hover {
-                  color: #4B4B4B;
-                }
-              }
-            }
-          }
-        }
-        
-
           .accunt-iocn{
             display: none;
             @include mobile {
@@ -631,13 +544,12 @@ $max-mobile-S: 482px;
 
     .mobile-nav{
       display: none;
-      background: white;
       position: absolute;
       z-index: 1020;
       width: 92.5%;
       top: 40px;
       list-style: none;
-      padding: 0 20px 20px;
+      padding: 0 20px 10px;
       &.fade-in {
         opacity: 1;
         transform: translateY(0);
@@ -646,6 +558,17 @@ $max-mobile-S: 482px;
       &.show {
         display: block; /* show クラスが付いているときに表示 */
       }
+      .fade-out-right {
+        opacity: 1; /* 初期状態で表示 */
+        transform: translateX(0); /* 元の位置 */
+        transition: opacity 0.3s ease, transform 0.3s ease; /* アニメーション */
+      
+        &.hide {
+          opacity: 0; /* 透明にする */
+          transform: translateX(30px); /* 右に移動 */
+        }
+      }
+      
 
       .mobile-online-click,
       .footer-contair1,
@@ -655,6 +578,11 @@ $max-mobile-S: 482px;
         transform: translateY(50px); // 初期状態は下に50px移動
         transition: opacity 0.3s ease, transform 0.3s ease;
         border-bottom: 1px solid #ddd;
+        padding: 16px 0;
+        &:last-child{
+          border-bottom: none;
+        }
+
       
         // フェードイン効果
         &.fade-in {
@@ -667,10 +595,13 @@ $max-mobile-S: 482px;
           transition: opacity 0.3s ease, transform 0.3s ease;
         }
       }
+
       .mobile-online-click{
         display: flex;
-        padding: 16px 0;
         margin-bottom: 9px;
+        &.hide {
+          display: none ;
+        }
         .left-svg-icon svg{
           color: rgba(106, 106, 106, 0.65) !important;
         }
@@ -692,61 +623,98 @@ $max-mobile-S: 482px;
       .footer-contair2,
       .footer-contair3{
         width: 100%;
-        padding: 16px 0;
         .footer-title{
           display: flex;
+          align-items: center;
             p {
             font-family: Montserrat, sans-serif;
             font-size: 12px;
-            color: black;
+            color: #1c1c1c;
             font-weight: 500;
             line-height: 20px;
           }
-        }
-        .toggle-button {
-          display: none;
-          margin-left: auto;
-          @include tablet {
-            display: block;
+        
+          .toggle-button {
+            position: relative;
+            width: 10px; // ボタンのサイズ
+            height: 10px;
+            margin-left: auto; // 右端に配置
+            cursor: pointer;
+            transition: transform 0.3s; // 回転アニメーションのトランジション
+        
+            &::before,
+            &::after {
+              content: "";
+              position: absolute;
+              background-color: #1c1c1c;
+              transition: transform 0.3s; // トランジション効果
+            }
+        
+            // 縦線 (初期状態)
+            &::before {
+              width: 1px;
+              height: 10px;
+              top: 0;
+              left: 50%;
+              transform: translateX(-50%);
+            }
+        
+            // 横線 (初期状態)
+            &::after {
+              width:10px;
+              height: 1px;
+              top: 50%;
+              left: 0;
+              transform: translateY(-50%);
+            }
+        
+            // アクティブ時のスタイル (＋が回転しながら－に変わる)
+            &.active {
+              transform: rotate(0deg); // ボタン全体を45度回転させる
+        
+              &::before {
+                transform: rotate(90deg) translateX(-50%); // 縦線を横に回転
+              }
+        
+              &::after {
+                opacity: 0; // 横線を透明にする
+              }
+            }
           }
         }
-      
-        // アクティブ時のトグルボタンのスタイル
-        .toggle-button.active::after {
-          content: "-";
-        }
+        
       
         .footer-nav {
           list-style: none;
-      
+          max-height: 0; // 初期状態では高さを0に設定
+          overflow: hidden; // 中の要素が見えないようにする
+          transition: max-height 0.3s ease; // 高さのトランジションを設定
+          border-left: 1px solid #ddd;
+          display: grid;
+          gap: 8px;
+        
           .footer-nav-item {
-            margin-bottom: 14px;
+            padding-left: 23px;
             font-family: "Nunito Sans", sans-serif;
-      
-            @include tablet {
-              // 初期状態で非表示
-              display: none;
-              opacity: 0;
-              transition: opacity 0.3s ease;
-      
-              &.active {
-                display: block;
-                opacity: 1;
-                transition: opacity 0.3s ease;
-              }
-            }
-      
+        
             a {
               text-decoration: none;
-              font-size: 14px;
-              color: rgba(106, 106, 106, 0.65);
-              font-family: "Nunito Sans", sans-serif;
+              font-size: 12px;
+              line-height: 20px;
+              color: #4B4B4B;
               &:hover {
                 color: #4B4B4B;
               }
             }
           }
         }
+        
+        // アクティブ時の高さを設定
+        .footer-nav.active {
+          max-height: 500px; // 十分な高さを設定して中身が表示されるようにする
+          margin: 15px 0 7px 8px;
+        }
+        
       }
 
       .mobile-online-click{
@@ -839,20 +807,20 @@ $max-mobile-S: 482px;
       }
       /* スクロールボタンのスタイル */
       .scroll {
-        position: absolute; /* 絶対位置で配置 */
-        bottom: -25px; /* 画像の下に配置 */
-        left: 50%; /* 水平中央に配置 */
-        transform: translateX(-50%); /* X軸のみ中央寄せ */
-        width: 50px; /* 円の幅 */
-        height: 50px; /* 円の高さ */
+        position: absolute;
+        bottom: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 50px;
         background-color: white;
-        border-radius: 100%; /* 円形にする */
-        cursor: pointer; /* ホバー時のカーソルをポインターに */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 下弦にうっすらシャドウを追加 */
+        border-radius: 50%;
+        cursor: pointer;
         display: flex;
-        align-items: center; /* 矢印を垂直方向に中央寄せ */
-        justify-content: center; /* 矢印を水平方向に中央寄せ */
-        z-index: 1; /* 画像より上に表示 */
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 1;
 
         /* ホバー時にのみアニメーションを発動 */
         &:hover::before {
@@ -1150,11 +1118,14 @@ $max-mobile-S: 482px;
 /* pタグのスタイル */
 .swiper-slide p {
   margin-bottom: 4px;
-  line-height: 20.5px;
+  line-height: 20px;
+  font-weight: 500;
 }
 
 .price-color{
-  color: rgba(28, 26, 26, 0.65); 
+  color: rgba(28, 27, 27, 0.65); 
+  line-height: 20px;
+  font-weight: 500;
 }
 .text-area{
   margin: 17px 0 12px;
@@ -1592,7 +1563,7 @@ $max-mobile-S: 482px;
       flex-direction: column; /* テキストを縦に並べる */
       justify-content: center; /* 中央揃え（縦） */
       align-items: center; /* 中央揃え（横） */
-      color: #FCFCFC; /* テキストの色を白に */
+      color: #ffffff; /* テキストの色を白に */
       padding: 20px; /* テキストボックスの余白 */
       text-align: center; /* テキストを中央揃え */
       max-width: 80%; /* 必要に応じて幅を制限 */
@@ -1600,7 +1571,7 @@ $max-mobile-S: 482px;
         top: 60%; 
       }
         p{
-          color: #FCFCFC;
+          color: #ffffff;
           font-weight: 500;
           line-height: 20px;
         }
@@ -1742,6 +1713,7 @@ $max-mobile-S: 482px;
       text-decoration: none;
       font-size: 12px;
       line-height: 20px;
+      font-weight: 500;
 
       &:hover {
         color: #1c1b1b;
@@ -1813,12 +1785,20 @@ $max-mobile-S: 482px;
     flex-direction: column;
     align-items: center;
     .section-title{
+        font-weight: 500;
         margin: 0 0 48px;
         @include tablet {
           margin: 0 0 40px;
         }
         @include mobile {
           gap: 15px;
+        }
+        p{
+          font-size: 12px;
+          line-height: 20px;
+        }
+        h1{
+          line-height: 40px;
         }
     }
 
@@ -1867,6 +1847,8 @@ $max-mobile-S: 482px;
             margin: 11px 0 24px;
             font-size: 12px;
             letter-spacing: 0.09rem;
+            font-weight: 500;
+            line-height: 20px;
             @include tablet {
               letter-spacing: 0.09rem;
             }
@@ -1879,7 +1861,7 @@ $max-mobile-S: 482px;
             font-size: 22px;
             margin-bottom: 17px;
             white-space: nowrap;
-            line-height: 1.6em;
+            line-height: 32px;
             letter-spacing: 0.15rem;
             font-weight: 500;
             @include tablet {
@@ -2055,7 +2037,7 @@ $max-mobile-S: 482px;
       }
 
       .film-title {
-        font-size: 21px;
+        font-size: 22px;
         margin: 25px 0;
         letter-spacing: 2px;
         line-height: 32px;
@@ -2244,7 +2226,7 @@ $max-mobile-S: 482px;
         .footer-title p{
           font-family: Montserrat,sans-serif;
           font-size: 12px;
-          line-height: 21px;
+          line-height: 22px;
           margin-bottom: 22px;
           letter-spacing: 0.08rem;
           color: rgba(106, 106, 106,);
@@ -2309,6 +2291,7 @@ $max-mobile-S: 482px;
     color: rgba(106, 106, 106, 0.65);
     width: 20px;
     height: 20px;
+    transition: color 0.2s ease, transform 0.2s ease;
     @include tablet {
       margin-right: 30px;
       }
@@ -2319,11 +2302,12 @@ $max-mobile-S: 482px;
   .footer-text p{
     margin: 43px 0 48px;
     color: rgba(106, 106, 106, 0.65);
-    line-height: 23px;
+    line-height: 18px;
     letter-spacing: 0.09rem;
-    font-size: 14px;
+    font-size: 11px;
     text-indent: 0.6em;
-    font-family: "Nunito Sans", sans-serif;
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
     @include tablet {
       margin: 47px 0 48px;
       }

@@ -12,19 +12,23 @@ document.addEventListener("scroll", function () {
 document.querySelector(".hamburger").addEventListener("click", function () {
   const nav = document.querySelector(".site-nav");
   const mask = document.getElementById("mask");
-  const navItems = document.querySelectorAll(".nav-item");
+  const mobileNav = document.querySelector(".mobile-nav");
 
   nav.classList.toggle("active");
   mask.classList.toggle("active");
 
-  // bodyにno-scrollクラスを追加/削除
+  // body に no-scroll クラスを追加/削除
   if (nav.classList.contains("active")) {
     document.body.classList.add("no-scroll");
   } else {
     document.body.classList.remove("no-scroll");
   }
 
-  // アニメーションクラスを一度削除して再適用
+  // モバイルナビのクラスをリセット
+  mobileNav.classList.remove("hide");
+
+  // ナビゲーション項目のアニメーションを設定
+  const navItems = document.querySelectorAll(".nav-item");
   navItems.forEach((item, index) => {
     item.classList.remove("animate");
     setTimeout(() => {
@@ -36,11 +40,16 @@ document.querySelector(".hamburger").addEventListener("click", function () {
 document.getElementById("closeButton").addEventListener("click", function () {
   const nav = document.querySelector(".site-nav");
   const mask = document.getElementById("mask");
+  const mobileNav = document.querySelector(".mobile-nav");
 
+  // メニューとマスクを非表示にする
   nav.classList.remove("active");
   mask.classList.remove("active");
 
-  // bodyからno-scrollクラスを削除
+  // モバイルナビのクラスをリセット
+  mobileNav.classList.remove("show");
+  mobileNav.classList.remove("hide");
+
   document.body.classList.remove("no-scroll");
 });
 
@@ -117,7 +126,6 @@ document.getElementById("closeButton").addEventListener("click", function () {
     item.classList.remove("animate"); // フェードイン用のクラスを削除
   });
 });
-// "ONLINE STORE" をクリックしたときの処理
 document
   .getElementById("online-click")
   .addEventListener("click", function (event) {
@@ -126,13 +134,15 @@ document
     const dropdown = document.querySelector(".dropdown");
     const mobileNav = document.querySelector(".mobile-nav");
 
-    // クラスをトグルして表示/非表示を切り替える
+    // サブメニューとモバイルナビの表示を切り替え
     if (dropdown.classList.contains("show")) {
       dropdown.classList.remove("show");
-      mobileNav.classList.remove("show"); // mobile-nav を非表示にする
+      mobileNav.classList.remove("show");
+      mobileNav.classList.add("hide"); // 確実に非表示
     } else {
       dropdown.classList.add("show");
-      mobileNav.classList.add("show"); // mobile-nav を表示する
+      mobileNav.classList.remove("hide"); // 表示をリセット
+      mobileNav.classList.add("show");
     }
   });
 
@@ -177,6 +187,77 @@ document.addEventListener("click", function () {
 document.querySelector(".dropdown").addEventListener("click", function (event) {
   event.stopPropagation();
 });
+
+document.querySelectorAll(".footer-title").forEach((title) => {
+  title.addEventListener("click", function () {
+    const button = title.querySelector(".toggle-button");
+    button.classList.toggle("active"); // active クラスを切り替え
+
+    const footerNav = title
+      .closest(".footer-contair1, .footer-contair2, .footer-contair3")
+      .querySelector(".footer-nav");
+
+    // アコーディオンのように表示/非表示を切り替え
+    if (footerNav.classList.contains("active")) {
+      footerNav.classList.remove("active"); // 非表示
+      footerNav.style.maxHeight = null;
+    } else {
+      footerNav.classList.add("active"); // 表示
+      footerNav.style.maxHeight = footerNav.scrollHeight + "px";
+    }
+  });
+});
+
+// mobile-nav 内の mobile-online-click をクリックしたときの処理
+document
+  .querySelector(".mobile-nav .mobile-online-click")
+  .addEventListener("click", function () {
+    const navItems = document.querySelectorAll(".nav-item"); // ナビゲーション項目
+    const mobileNav = document.querySelector(".mobile-nav"); // モバイルナビ
+
+    console.log("mobile-nav 内の mobile-online-click がクリックされました"); // 確認用ログ
+
+    // フェードインアニメーションの設定
+    navItems.forEach((item, index) => {
+      item.classList.remove("fade-out"); // フェードアウトクラスを削除
+      console.log(`nav-item ${index + 1} のクラスを更新`); // 確認用ログ
+      setTimeout(() => {
+        item.classList.add("animate"); // 順番にアニメーションを付与
+      }, index * 100); // アニメーション遅延
+    });
+
+    // モバイルナビのクラス切り替え
+    if (mobileNav) {
+      console.log("mobile-nav のクラスを切り替えます"); // 確認用ログ
+      mobileNav.classList.remove("show"); // 表示クラスを削除
+      mobileNav.classList.add("hide"); // 非表示クラスを追加
+      console.log("mobile-nav のクラス:", mobileNav.classList); // 確認用ログ
+    } else {
+      console.error("mobile-nav が見つかりません"); // エラー用ログ
+    }
+  });
+document
+  .querySelector(".mobile-nav .mobile-online-click")
+  .addEventListener("click", function () {
+    const mobileNav = document.querySelector(".mobile-nav");
+
+    if (mobileNav) {
+      // フェードアウトアニメーションを適用
+      mobileNav.classList.add("fade-out-right", "hide");
+
+      // アニメーション終了後に display: none を設定
+      mobileNav.addEventListener(
+        "transitionend",
+        function () {
+          if (mobileNav.classList.contains("hide")) {
+            mobileNav.style.display = "none";
+            console.log("モバイルナビが非表示になりました");
+          }
+        },
+        { once: true } // 一度だけ実行
+      );
+    }
+  });
 
 function adjustGap() {
   const navList = document.querySelector(".nav-list");
@@ -502,4 +583,25 @@ document.addEventListener("DOMContentLoaded", () => {
       dropdown.style.visibility = "hidden";
     }, 300); // 遅延時間を指定
   });
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const scrollButtons = document.querySelectorAll(".scroll"); // 全ての.scrollを取得
+  const collectionSection = document.getElementById("collection");
+
+  if (scrollButtons.length > 0 && collectionSection) {
+    scrollButtons.forEach((scrollButton) => {
+      scrollButton.addEventListener("click", () => {
+        const sectionTop = collectionSection.offsetTop; // セクションの位置を取得
+        const offset = 240; // 調整量（px）
+
+        // 調整された位置にスクロール
+        window.scrollTo({
+          top: sectionTop - offset, // 調整量を引く
+          behavior: "smooth",
+        });
+
+        console.log("スクロールボタンがクリックされました");
+      });
+    });
+  }
 });
